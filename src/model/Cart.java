@@ -1,8 +1,4 @@
 package model;
-
-import model.Order;
-import model.Disc;
-
 /**
  * <p>Cart class contains attributes include id, order
  * disc, quantity, totalPrice
@@ -13,16 +9,16 @@ import model.Disc;
 public class Cart {
 	
 	private int id;
-	private Order order;
+	private PurchaseOrder purchaseOrder;
 	private Disc disc;
 	private int quantity;
 	private double totalPrice;
 	
 	public Cart(){}
 	
-	public Cart(int id, Order order, Disc disc, int quantity, double totalPrice) {
+	public Cart(int id, PurchaseOrder purchaseOrder, Disc disc, int quantity, double totalPrice) {
 		this.id = id;
-		this.order = order;
+		this.setPurchaseOrder(purchaseOrder);
 		this.disc = disc;
 		this.quantity = quantity;
 		this.totalPrice  = totalPrice;
@@ -38,14 +34,7 @@ public class Cart {
 		this.id = id;
 	}
 
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
+	
 	public Disc getDisc() {
 		return disc;
 	}
@@ -68,6 +57,14 @@ public class Cart {
 
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public PurchaseOrder getPurchaseOrder() {
+		return purchaseOrder;
+	}
+
+	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+		this.purchaseOrder = purchaseOrder;
 	}
 	
 }

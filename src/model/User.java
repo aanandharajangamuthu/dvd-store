@@ -1,12 +1,22 @@
 package model;
 
+import java.util.HashSet;
+import java.util.Set;
+/**
+ * @author manikandan 
+ *
+ */
 public class User {
-	 private int id;
-	 private String name;
-	 private String email;
-	 private String password;
-	 private String mobileNumber;
-
+    private int id;
+	private String name;
+	private String email;
+	private String password;
+	private String mobileNumber;
+	private boolean isAdmin;
+    private Set<PurchaseOrder> 	purchaseOrder = new HashSet<PurchaseOrder> ();
+	
+	public User(){};
+	 
 	public int getId() {
 		return id;
 	}
@@ -45,6 +55,22 @@ public class User {
 	
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public Set<PurchaseOrder> getPurchaseOrder() {
+		return purchaseOrder;
+	}
+
+	public void setPurchaseOrder(Set<PurchaseOrder> purchaseOrder) {
+		this.purchaseOrder = purchaseOrder;
 	}
 	
 

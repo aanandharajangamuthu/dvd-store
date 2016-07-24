@@ -2,46 +2,51 @@
  * 
  */
 package model;
+import java.util.HashSet;
+import java.util.Set;
+	/**
+	 * @author Anandharaj Angamuthu
+	 *
+	 */
+	public class Language {
+		
+	    private int id;
+	    private String name;
+	    private Set<Disc> disc = new HashSet<Disc>();   
 
+	    public Language(){}
 
-/**
- * @author Anandharaj Angamuthu
- *
- */
-public class Language {
-	
-    private int id;
-    private String name;
-    
+	    public Language(int id, String name ){
+		    this.id = id;
+		    this.name = name;
+	    }
+	    
+	  //Getter and Setter
+	    
+		public int getId() {
+			return id;
+		}
 
-    public Language(){}
+		public void setId(int id) {
+			this.id = id;
+		}
 
-    public Language(int id, String name ){
-	this.id = id;
-	this.name = name;
-    }
-    
-  //Getter and Setter
-    
-	public int getId() {
-		return id;
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+		
+		public Set<Disc> getDisc() {
+			return disc;
+		}
+
+		public void setDisc(Set<Disc> disc) {
+			this.disc = disc;
+		}
+
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@Override
-	public String toString() {
-		return "Language [id=" + id + ", name=" + name + "]";
-	}
-
-}

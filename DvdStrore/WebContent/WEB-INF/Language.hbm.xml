@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="model.Language" table="Language">
+      <meta attribute="class-description">
+         This class contains the language detail. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="increment"/>
+      </id>
+      <property name="name" column="name" type="string"/>
+      <set name="discs" table="Disc" inverse="true" lazy="false" fetch="select">
+        <key>
+          <column name="languageId" not-null="true"/>
+        </key>
+      <one-to-many class="model.Disc"/>
+      </set>
+   </class>
+</hibernate-mapping>

@@ -13,6 +13,17 @@ public class Category {
 	
 	public Category(){};
 	
+	
+	public Category(String name) {
+		this.name = name;
+	}
+	
+	public Category(String name, Set<Disc> discs) {
+		this.name = name;
+		this.discs = discs;
+	}
+
+	
 	public int getId() {
 		return id;
 	}

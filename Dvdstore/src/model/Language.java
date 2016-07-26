@@ -16,8 +16,7 @@ import java.util.Set;
 
 	    public Language(){}
 
-	    public Language(int id, String name ){
-		    this.id = id;
+	    public Language(String name ){
 		    this.name = name;
 	    }
 	    

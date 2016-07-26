@@ -31,7 +31,7 @@ public class PurchaseOrderDao extends GenericDao {
      *         If there is error in returning all PurchaseOrder through session object.  
      */	
 	public List<PurchaseOrder> retrieveAllPurchaseOrders() throws UserApplicationException {        
-        Session session = openSession();     
+        Session session = checkSessionFactory();     
         try {         
             return session.createQuery("FROM PurchaseOrder").list();           
         } finally {
@@ -50,7 +50,7 @@ public class PurchaseOrderDao extends GenericDao {
      *        If there is error in returning PurchaseOrder object.    
      */	
 	public PurchaseOrder findUserById(int purchaseOrderId) throws UserApplicationException {       
-        Session session = openSession();
+        Session session = checkSessionFactory();
         try {            
             return (PurchaseOrder)session.get(User.class, purchaseOrderId);           
         } catch (HibernateException e) {            
@@ -71,7 +71,7 @@ public class PurchaseOrderDao extends GenericDao {
      *         If there is error in deleting PurchaseOrder object.    
      */	
 	public void deletePurchaseOrderById(int purchaseOrderId) throws UserApplicationException {
-		Session session = openSession();
+		Session session = checkSessionFactory();
         Transaction transaction = null;               
         try {              
             transaction = session.beginTransaction();                                         

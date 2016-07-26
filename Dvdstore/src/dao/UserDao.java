@@ -31,7 +31,7 @@ public class UserDao extends GenericDao {
      *        If there is error in inserting user through session object.     
      */	
 	public void insert(User user) throws UserApplicationException {
-		Session session = openSession();
+		Session session = checkSessionFactory();
         Transaction transaction = null;                 
         try {                
             transaction = session.beginTransaction();
@@ -53,7 +53,7 @@ public class UserDao extends GenericDao {
      *         If there is error in returning users through session object.  
      */	
 	public List<User> retrieveAllUsers() throws UserApplicationException {        
-        Session session = openSession();     
+        Session session = checkSessionFactory();     
         try {         
             return session.createQuery("FROM User").list();           
         } finally {
@@ -73,7 +73,7 @@ public class UserDao extends GenericDao {
      *        If there is error in returning User object.    
      */	
 	public User findUserById(int userId) throws UserApplicationException {       
-        Session session = openSession();
+        Session session = checkSessionFactory();
         try {            
             return (User)session.get(User.class, userId);           
         } catch (HibernateException e) {            
@@ -94,7 +94,7 @@ public class UserDao extends GenericDao {
      *         If there is error in deleting User object.    
      */	
 	public void deleteUserById(int userId) throws UserApplicationException {
-		Session session = openSession();
+		Session session = checkSessionFactory();
         Transaction transaction = null;               
         try {              
             transaction = session.beginTransaction();                                         
@@ -118,7 +118,7 @@ public class UserDao extends GenericDao {
      *     If there is error in updating User object by session object.    
      */	
 	public void updateUser(User user) throws UserApplicationException {
-		Session session = openSession();
+		Session session = checkSessionFactory();
         Transaction transaction = null;
         try {            
             transaction = session.beginTransaction();            

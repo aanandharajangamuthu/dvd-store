@@ -31,7 +31,7 @@ public class CartDao extends GenericDao {
      *         If there is error in returning all cart through session object.  
      */	
 	public List<Cart> retrieveAllCarts() throws UserApplicationException {        
-        Session session = openSession();     
+        Session session = checkSessionFactory();     
         try {         
             return session.createQuery("FROM Cart").list();           
         } finally {
@@ -50,7 +50,7 @@ public class CartDao extends GenericDao {
      *        If there is error in returning Cart object.    
      */	
 	public Cart findCartById(int cartId) throws UserApplicationException {       
-        Session session = openSession();
+        Session session = checkSessionFactory();
         try {            
             return (Cart)session.get(User.class, cartId);           
         } catch (HibernateException e) {            
@@ -71,7 +71,7 @@ public class CartDao extends GenericDao {
      *         If there is error in deleting Cart object.    
      */	
 	public void deleteCartById(int cartId) throws UserApplicationException {
-		Session session = openSession();
+		Session session = checkSessionFactory();
         Transaction transaction = null;               
         try {              
             transaction = session.beginTransaction();                                         

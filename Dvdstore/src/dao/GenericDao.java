@@ -79,7 +79,7 @@ public class GenericDao {
     * @return Session 
     *         returns session object to be interact with the objects 
     */       
-    protected Session openSession() throws UserApplicationException {
+    protected Session checkSessionFactory() throws UserApplicationException {
         if(null == sessionFactory) {
             throw new UserApplicationException("SessionFactory is not opened while creating");            
         } else {     

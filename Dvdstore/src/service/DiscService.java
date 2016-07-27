@@ -18,7 +18,7 @@ import exception.UserApplicationException;
  */
 public class DiscService {
 	
-	DiscDao discDao = new DiscDao();
+	private DiscDao discDao = new DiscDao();
 	
     /**
      * <p>

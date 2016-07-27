@@ -15,7 +15,7 @@ import exception.UserApplicationException;
  */
 public class LanguageService {
 	
-	LanguageDao languageDao = new LanguageDao();
+	private LanguageDao languageDao = new LanguageDao();
 	
     /**
      * <p>

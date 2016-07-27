@@ -14,7 +14,7 @@ import exception.UserApplicationException;
  */
 public class CategoryService {
 	
-	CategoryDao categoryDao  = new CategoryDao();
+	private CategoryDao categoryDao  = new CategoryDao();
 	
     /**
      * <p>

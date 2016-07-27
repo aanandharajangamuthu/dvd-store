@@ -6,7 +6,7 @@
 <hibernate-mapping>
     <class name="model.Disc" table="Disc">
         <meta attribute="class-description">
-            This class contains the employee detail. 
+            This class contains the Disc detail. 
         </meta>
         <id name="id" type="int" column="id">
             <generator class="increment"/>
@@ -24,7 +24,7 @@
         </many-to-one>          
         <set name="cart" table="Cart" inverse="true" lazy ="false" fetch="select">
             <key>
-                <column name="discId" not-null="true"/>
+                <column name="id" not-null="true"/>
             </key>
             <one-to-many class="model.Cart"/>
         </set>                 

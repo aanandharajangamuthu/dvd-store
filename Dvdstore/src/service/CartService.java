@@ -18,7 +18,7 @@ import model.Cart;
  *
  */
 public class CartService {
-    CartDao cartDao = new CartDao();
+    private CartDao cartDao = new CartDao();
 	
     /**
      * <p>

@@ -11,7 +11,7 @@ import exception.UserApplicationException;
  *
  */
 public class PurchaseOrderService {
-	PurchaseOrderDao purchaseOrderDao = new PurchaseOrderDao();
+	private PurchaseOrderDao purchaseOrderDao = new PurchaseOrderDao();
 	
 	/**
      * <p>

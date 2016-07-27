@@ -6,7 +6,7 @@
 <hibernate-mapping>
     <class name="model.Language" table="Language">
         <meta attribute="class-description">
-            This class contains the employee detail. 
+            This class contains the Language detail. 
         </meta>
         <id name="id" type="int" column="id">
             <generator class="increment"/>
@@ -14,7 +14,7 @@
         <property name="name" column="name" type="string"/>        
         <set name="disc" table="Disc" inverse="true" lazy ="false" fetch="select">
             <key>
-                <column name="languageId" not-null="true"/>
+                <column name="id" not-null="true"/>
             </key>
             <one-to-many class="model.Disc"/>
         </set>                           

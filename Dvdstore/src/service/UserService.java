@@ -18,7 +18,7 @@ import exception.UserApplicationException;
  *
  */
 public class UserService {
-	UserDao userDao = new UserDao();	
+	private UserDao userDao = new UserDao();	
 	
 	/**
      * <p>

@@ -11,9 +11,9 @@ public class Disc {
 	private Category category ;
 	private Language language;
 	private String name;
+	private String directorName;
 	private String actorName;
 	private String imageUrl;
-	private String directorName;
 	private int price;
 	private int stock;
 	private Set<Cart> cart = new HashSet<Cart> ();
@@ -21,11 +21,13 @@ public class Disc {
 	public Disc(){};
 	
 	
-	public Disc(String name,  String directorName, String actorName, String imageUrl, int stock, int price) {
+	public Disc(Category category, Language language, String name, String directorName, String actorName, String imageUrl, int stock, int price) {
+		this.category = category;
+		this.language = language;
 		this.name = name;
 		this.directorName = directorName;
 		this.actorName = actorName;
-		this.setImageUrl(imageUrl);
+		this.imageUrl = imageUrl;
 		this.stock = stock;
 		this.price = price;	
 	}
@@ -37,38 +39,6 @@ public class Disc {
 	
 	public void setId(int id) {
 		this.id = id;
-	}	
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getActorName() {
-		return actorName;
-	}
-	
-	public void setActorName(String actorName) {
-		this.actorName = actorName;
-	}
-	
-	public String getDirectorName() {
-		return directorName;
-	}
-	
-	public void setDirectorName(String directorName) {
-		this.directorName = directorName;
-	}
-	
-	public int getPrice() {
-		return price;
-	}
-	
-	public void setPrice(int price) {
-		this.price = price;
 	}	
 	
 	public Category getCategory() {
@@ -87,14 +57,49 @@ public class Disc {
 		this.language = language;
 	}
 
-	public Set<Cart> getCart() {
-		return cart;
+	
+	public String getName() {
+		return name;
+	}
+		
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getDirectorName() {
+		return directorName;
+	}
+	
+	public void setDirectorName(String directorName) {
+		this.directorName = directorName;
+	}
+	
+	public String getActorName() {
+		return actorName;
+	}
+	
+	public void setActorName(String actorName) {
+		this.actorName = actorName;
+	}
+		
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setCart(Set<Cart> cart) {
-		this.cart = cart;
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
+
+	public int getPrice() {
+		return price;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price;
+	}	
+	
 	public int getStock() {
 		return stock;
 	}
@@ -104,12 +109,12 @@ public class Disc {
 	}
 
 
-	public String getImageUrl() {
-		return imageUrl;
+	public Set<Cart> getCart() {
+		return cart;
 	}
 
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setCart(Set<Cart> cart) {
+		this.cart = cart;
 	}
+
 }

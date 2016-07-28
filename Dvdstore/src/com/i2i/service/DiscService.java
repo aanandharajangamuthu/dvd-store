@@ -43,8 +43,8 @@ public class DiscService {
      * @throws UserApplicationException
      *         if there is any error in the given input or error while inserting into databse
      */
-    public void createDisc(String name, String directorName, String actorName, String imageUrl, int stock, int price) throws UserApplicationException {
-    	Disc disc = new Disc(name, directorName, actorName, imageUrl, stock, price);
+    public void createDisc(Category category, Language language, String name, String directorName, String actorName, String imageUrl, int stock, int price) throws UserApplicationException {
+    	Disc disc = new Disc(category, language, name, directorName, actorName, imageUrl, stock, price);
     	discDao.insertDisc(disc);
     } 
     

@@ -14,7 +14,7 @@ public class User {
 	private String password;
 	private String mobileNumber;
 	private boolean isAdmin;
-    private Set<PurchaseOrder> 	purchaseOrder = new HashSet<PurchaseOrder> ();
+    private Set<PurchaseOrder> 	purchaseOrders = new HashSet<PurchaseOrder> ();
     
     
     public User(String name, String email, String password, String mobileNumber) {	
@@ -74,12 +74,12 @@ public class User {
 		this.isAdmin = isAdmin;
 	}
 
-	public Set<PurchaseOrder> getPurchaseOrder() {
-		return purchaseOrder;
+	public Set<PurchaseOrder> getPurchaseOrders() {
+		return purchaseOrders;
 	}
 
-	public void setPurchaseOrder(Set<PurchaseOrder> purchaseOrder) {
-		this.purchaseOrder = purchaseOrder;
+	public void setPurchaseOrders(Set<PurchaseOrder> purchaseOrders) {
+		this.purchaseOrders = purchaseOrders;
 	}
 	
 

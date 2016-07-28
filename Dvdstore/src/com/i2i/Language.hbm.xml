@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-    <class name="model.Language" table="Language">
+    <class name="com.i2i.model.Language" table="Language">
         <meta attribute="class-description">
             This class contains the Language detail. 
         </meta>
@@ -12,11 +12,11 @@
             <generator class="increment"/>
         </id>      
         <property name="name" column="name" type="string"/>        
-        <set name="disc" table="Disc" inverse="true" lazy ="false" fetch="select">
+        <set name="discs" table="Disc" inverse="true" lazy ="false" fetch="select">
             <key>
                 <column name="id" not-null="true"/>
             </key>
-            <one-to-many class="model.Disc"/>
+            <one-to-many class="com.i2i.model.Disc"/>
         </set>                           
     </class>
 </hibernate-mapping>

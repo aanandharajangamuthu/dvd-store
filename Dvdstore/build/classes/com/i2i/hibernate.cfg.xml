@@ -13,17 +13,17 @@
         <!-- Assume test is the database name -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost/DvdStore</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.password">ubuntu</property>
         <property name="show_sql">false</property>
         <property name="format_sql">false</property>
         <property name="use_sql_comments">false</property>
 
         <!-- List of XML mapping files -->
-        <mapping resource="User.hbm.xml"/>
-        <mapping resource="Category.hbm.xml"/>
-        <mapping resource="Disc.hbm.xml"/>
-        <mapping resource="Language.hbm.xml"/>
-        <mapping resource="PurchaseOrder.hbm.xml"/>
-        <mapping resource="Cart.hbm.xml"/>
+        <mapping resource="com/i2i/User.hbm.xml"/>
+        <mapping resource="com/i2i/Category.hbm.xml"/>
+        <mapping resource="com/i2i/Disc.hbm.xml"/>
+        <mapping resource="com/i2i/Language.hbm.xml"/>
+        <mapping resource="com/i2i/PurchaseOrder.hbm.xml"/>
+        <mapping resource="com/i2i/Cart.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

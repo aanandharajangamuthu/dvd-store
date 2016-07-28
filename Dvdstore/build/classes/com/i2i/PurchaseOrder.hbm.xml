@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-    <class name="model.PurchaseOrder" table="PurchaseOrder">
+    <class name="com.i2i.model.PurchaseOrder" table="PurchaseOrder">
         <meta attribute="class-description">
             This class contains the PurchaseOrder detail. 
         </meta>
@@ -13,14 +13,14 @@
         </id>        
         <property name="payment" column="payment" type="string"/>
         <property name="status" column="status" type="string"/>
-        <many-to-one name="user" class="model.User" lazy ="false" fetch="select" >
+        <many-to-one name="user" class="com.i2i.model.User" lazy ="false" fetch="select" >
             <column name="userId" not-null="false"/>
         </many-to-one>          
         <set name="cart" table="Cart" inverse="true" lazy ="false" fetch="select">
             <key>
                 <column name="id" not-null="true"/>
             </key>
-            <one-to-many class="model.Cart"/>
+            <one-to-many class="com.i2i.model.Cart"/>
         </set>                                       
     </class>
 </hibernate-mapping>

@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-    <class name="model.Disc" table="Disc">
+    <class name="com.i2i.model.Disc" table="Disc">
         <meta attribute="class-description">
             This class contains the Disc detail. 
         </meta>
@@ -16,17 +16,17 @@
         <property name="actorName" column="actorName" type="string"/>
         <property name="stock" column="stock" type="string"/>
         <property name="price" column="price" type="int"/>
-        <many-to-one name="category" class="model.Category" lazy ="false" fetch="select" >
+        <many-to-one name="category" class="com.i2i.model.Category" lazy ="false" fetch="select" >
             <column name="categoryId" not-null="false"/>
         </many-to-one>
-        <many-to-one name="language" class="model.Language" lazy ="false" fetch="select" >
+        <many-to-one name="language" class="com.i2i.model.Language" lazy ="false" fetch="select" >
             <column name="languageId" not-null="false"/>
         </many-to-one>          
         <set name="cart" table="Cart" inverse="true" lazy ="false" fetch="select">
             <key>
                 <column name="id" not-null="true"/>
             </key>
-            <one-to-many class="model.Cart"/>
+            <one-to-many class="com.i2i.model.Cart"/>
         </set>                 
     </class>
 </hibernate-mapping>

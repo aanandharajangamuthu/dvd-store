@@ -1,7 +1,1 @@
-/Cart.hbm.xml
-/Category.hbm.xml
-/Disc.hbm.xml
-/Language.hbm.xml
-/PurchaseOrder.hbm.xml
-/User.hbm.xml
-/hibernate.cfg.xml
+/com/

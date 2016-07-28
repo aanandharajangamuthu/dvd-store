@@ -16,9 +16,8 @@ public class Cart {
 	
 	public Cart(){}
 	
-	public Cart(int id, PurchaseOrder purchaseOrder, Disc disc, int quantity, double totalPrice) {
-		this.id = id;
-		this.setPurchaseOrder(purchaseOrder);
+	public Cart(PurchaseOrder purchaseOrder, Disc disc, int quantity, double totalPrice) {
+		this.purchaseOrder = purchaseOrder;
 		this.disc = disc;
 		this.quantity = quantity;
 		this.totalPrice  = totalPrice;

@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-    <class name="model.User" table="User">
+    <class name="com.i2i.model.User" table="User">
         <meta attribute="class-description">
             This class contains the User detail. 
         </meta>
@@ -15,11 +15,11 @@
         <property name="email" column="email" type="string"/>
         <property name="password" column="password" type="string"/>
         <property name="mobileNumber" column="mobileNumber" type="string"/>
-        <set name="purchaseOrder" table="PurchaseOrder" inverse="true" lazy ="false" fetch="select">
+        <set name="purchaseOrders" table="PurchaseOrder" inverse="true" lazy ="false" fetch="select">
             <key>
                 <column name="id" not-null="true"/>
             </key>
-            <one-to-many class="model.PurchaseOrder"/>
+            <one-to-many class="com.i2i.model.PurchaseOrder"/>
         </set>         
     </class>
 </hibernate-mapping>

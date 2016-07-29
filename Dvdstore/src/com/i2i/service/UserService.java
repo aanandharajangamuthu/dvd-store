@@ -35,9 +35,8 @@ public class UserService {
      * @throws UserApplicationException  
      *         If there is failed or interrupted insert operation.              
      */	
-	public void addUser(String name, String email, String password, String mobileNumber) throws UserApplicationException {
-		User user = new User(name,email,password,mobileNumber);
-		userDao.insert(user);		
+	public void addUser(User user) throws UserApplicationException {	
+		userDao.insert(user);	
 	}
 	
 	/**

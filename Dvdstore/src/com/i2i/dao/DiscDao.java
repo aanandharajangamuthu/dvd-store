@@ -33,14 +33,15 @@ public class DiscDao extends GenericDao {
      *      
      */
     public void insertDisc(Disc disc) throws UserApplicationException {
+    	System.out.print(disc.getActorName());
     	Session session = checkSessionFactory();
-    	Transaction transaction = null;
+    	Transaction transaction = null;    	
         try {
-            transaction = session.beginTransaction();
+            transaction = session.beginTransaction();            
             session.save(disc); 
             transaction.commit();
-        } catch (HibernateException e) {
-            throw new UserApplicationException("unable to insert disc",e);
+        } catch (HibernateException e) {        
+            throw new UserApplicationException("unable to insert disc"+disc.getName(),e);
         } finally {
             closeSession(session);
         }        

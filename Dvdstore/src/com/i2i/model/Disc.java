@@ -13,7 +13,7 @@ public class Disc {
 	private String name;
 	private String directorName;
 	private String actorName;
-	private String imageUrl;
+	private byte[] imageUrl;	
 	private int price;
 	private int stock;
 	private Set<Cart> cart = new HashSet<Cart> ();
@@ -21,13 +21,13 @@ public class Disc {
 	public Disc(){};
 	
 	
-	public Disc(Category category, Language language, String name, String directorName, String actorName, String imageUrl, int stock, int price) {
+	public Disc(Category category, Language language, String name, String directorName, String actorName, byte[] imageUrl, int stock, int price) {
 		this.category = category;
 		this.language = language;
 		this.name = name;
 		this.directorName = directorName;
 		this.actorName = actorName;
-		this.imageUrl = imageUrl;
+		this.setImageUrl(imageUrl);
 		this.stock = stock;
 		this.price = price;	
 	}
@@ -80,17 +80,7 @@ public class Disc {
 	
 	public void setActorName(String actorName) {
 		this.actorName = actorName;
-	}
-		
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
+	}	
 
 	public int getPrice() {
 		return price;
@@ -115,6 +105,16 @@ public class Disc {
 
 	public void setCart(Set<Cart> cart) {
 		this.cart = cart;
+	}
+
+
+	public byte[] getImageUrl() {
+		return imageUrl;
+	}
+
+
+	public void setImageUrl(byte[] imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 }

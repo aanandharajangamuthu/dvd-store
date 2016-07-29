@@ -30,7 +30,7 @@ public class GenericDao {
      */
     private static void getConnection() {
         try {
-            sessionFactory = new Configuration().configure("com/src/hibernate.cfg.xml").buildSessionFactory();
+            sessionFactory = new Configuration().configure("com/i2i/hibernate.cfg.xml").buildSessionFactory();
         } catch (Throwable ex) { 
             System.err.println("Failed to create sessionFactory object." + ex);             
         }   

@@ -20,7 +20,7 @@ public class Category {
 	
 	public Category(String name, Set<Disc> discs) {
 		this.name = name;
-		this.discs = discs;
+		this.setDiscs(discs);
 	}
 
 	
@@ -40,11 +40,11 @@ public class Category {
 		this.name = name;
 	}
 
-	public Set<Disc> getDisc() {
+	public Set<Disc> getDiscs() {
 		return discs;
 	}
 
-	public void setDisc(Set<Disc> discs) {
+	public void setDiscs(Set<Disc> discs) {
 		this.discs = discs;
 	}
 

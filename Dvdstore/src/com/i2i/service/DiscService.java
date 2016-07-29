@@ -43,8 +43,7 @@ public class DiscService {
      * @throws UserApplicationException
      *         if there is any error in the given input or error while inserting into databse
      */
-    public void createDisc(Category category, Language language, String name, String directorName, String actorName, String imageUrl, int stock, int price) throws UserApplicationException {
-    	Disc disc = new Disc(category, language, name, directorName, actorName, imageUrl, stock, price);
+    public void createDisc(Disc disc) throws UserApplicationException {    	
     	discDao.insertDisc(disc);
     } 
     
@@ -116,7 +115,7 @@ public class DiscService {
      * @throws ApplicaionException
      *         if there is any error in the given input or error while updating into databse  
      */  
-    public void updateByDiscId(int id, String name, String directorName, String actorName, String imageUrl, int stock, int price) throws UserApplicationException {
+    public void updateByDiscId(int id, String name, String directorName, String actorName, byte[] imageUrl, int stock, int price) throws UserApplicationException {
     	Disc disc = discDao.findDiscById(id);   
     	disc.setName(name);
     	disc.setDirectorName(directorName);

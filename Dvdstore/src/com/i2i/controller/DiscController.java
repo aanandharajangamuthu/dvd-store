@@ -7,22 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.i2i.service.DiscService;
-import com.i2i.model.Disc;
-import com.i2i.exception.UserApplicationException;
-
-
-/**
- * @author ideas2it
-=======
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +26,7 @@ import com.i2i.service.LanguageService;
  */
 @Controller
 public class DiscController {
+
 
 	
 	@Autowired
@@ -64,12 +49,12 @@ public class DiscController {
 			//e.printStackTrace();
 			e.getMessage();
 		}
-		System.out.println("Save Category Data");
-		return new ModelAndView("redirect:/categoryList.html");
+		System.out.println("Save Disc Data");
+		return new ModelAndView("redirect:/discList.html");
 	}
 
 	@RequestMapping("/discList")
-	public ModelAndView getLanguageList() {
+	public ModelAndView getdiscList() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
@@ -79,5 +64,25 @@ public class DiscController {
 		}
 		return new ModelAndView("discDetails", model);
     }
+	
+	@RequestMapping("/showDisc")
+	public ModelAndView searchDisc(@ModelAttribute("disc") Disc disc,
+			BindingResult result) { 	
+		return new ModelAndView("findDisc");
+	}
+	
+	
+	@RequestMapping("/discFind")
+	public ModelAndView retrieveDisc(@ModelAttribute("disc") Disc disc,
+			BindingResult result) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		try {
+			model.put("disc",discService.findByDiscId(disc.getId()));
+		} catch (UserApplicationException e) {
+			
+			e.getMessage();
+		}
+		System.out.println("Save Disc Data");
+		return new ModelAndView("viewDisc",model);
+	}
 }
-

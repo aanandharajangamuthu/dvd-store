@@ -10,11 +10,11 @@
 <body>
 <center>
 <br><br><br><br><br><br>
-<div style="color: teal;font-size: 30px">Category Details</div>
+<div style="color: green;font-size: 30px">Category Details</div>
 <br><br>
 <c:if test="${!empty category}">
 <table border="1" bgcolor="black" width="600px">
-<tr style="background-color: teal;color: white;text-align: center;" height="40px">
+<tr style="background-color: green;color: white;text-align: center;" height="40px">
 <td>Category Id</td>
 <td>Category Name</td>
 </tr>

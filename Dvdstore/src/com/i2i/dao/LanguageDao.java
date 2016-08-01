@@ -9,6 +9,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
 
+import org.springframework.stereotype.Repository;
+
 import com.i2i.model.Language;
 import com.i2i.exception.UserApplicationException;
 
@@ -22,6 +24,7 @@ import com.i2i.exception.UserApplicationException;
  * @version 1.0
  * @created 2016-07-25
  */
+@Repository
 public class LanguageDao extends GenericDao {
 	
     /**

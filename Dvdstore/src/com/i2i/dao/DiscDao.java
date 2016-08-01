@@ -9,6 +9,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
 
+import org.springframework.stereotype.Repository;
+
+
 import com.i2i.model.Category;
 import com.i2i.model.Language;
 import com.i2i.model.Disc;
@@ -23,6 +26,7 @@ import com.i2i.exception.UserApplicationException;
  * @version 1.0
  * @modified 2016-07-26
  */
+@Repository
 public class DiscDao extends GenericDao {
 	
     /**
@@ -33,15 +37,14 @@ public class DiscDao extends GenericDao {
      *      
      */
     public void insertDisc(Disc disc) throws UserApplicationException {
-    	System.out.print(disc.getActorName());
     	Session session = checkSessionFactory();
-    	Transaction transaction = null;    	
+    	Transaction transaction = null;
         try {
-            transaction = session.beginTransaction();            
+            transaction = session.beginTransaction();
             session.save(disc); 
             transaction.commit();
-        } catch (HibernateException e) {        
-            throw new UserApplicationException("unable to insert disc"+disc.getName(),e);
+        } catch (HibernateException e) {
+            throw new UserApplicationException("unable to insert disc",e);
         } finally {
             closeSession(session);
         }        

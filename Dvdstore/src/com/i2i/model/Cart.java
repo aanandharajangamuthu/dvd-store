@@ -1,4 +1,15 @@
 package com.i2i.model;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  * <p>Cart class contains attributes include id, order
  * disc, quantity, totalPrice
@@ -6,10 +17,18 @@ package com.i2i.model;
  * @author Anandharaj Angamuhtu
  *
  */
+@Entity
+@Table(name="Cart")
 public class Cart {
 	
+	@Id
+	@GeneratedValue
+	@Column(name = "id")		
 	private int id;
 	private PurchaseOrder purchaseOrder;
+	
+	@ManyToOne
+	@JoinColumn(name ="discId")	
 	private Disc disc;
 	private int quantity;
 	private double totalPrice;

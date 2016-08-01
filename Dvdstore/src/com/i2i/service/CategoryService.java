@@ -5,6 +5,11 @@ package com.i2i.service;
 
 import java.util.List;
 import com.i2i.model.Category;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
 import com.i2i.dao.CategoryDao;
 import com.i2i.exception.UserApplicationException;
 
@@ -12,9 +17,11 @@ import com.i2i.exception.UserApplicationException;
  * @author Anandharaj Angamuthu
  *
  */
+@Service
 public class CategoryService {
 	
-	private CategoryDao categoryDao  = new CategoryDao();
+	@Autowired
+	private CategoryDao categoryDao;
 	
     /**
      * <p>
@@ -29,8 +36,7 @@ public class CategoryService {
      * @throws UserApplicationException
      *         if there is any error in the given input or error while inserting into databse
      */
-    public void createCategory(String name) throws UserApplicationException {
-        Category category = new Category(name);
+    public void createCategory(Category category) throws UserApplicationException {
         categoryDao.insertCategory(category);
     } 
     
@@ -43,7 +49,7 @@ public class CategoryService {
      * @return categoryDao.listOfCategories()
      *         List of categories available in the database
      */
-    public List<Category> CategoryList() throws UserApplicationException{
+    public List<Category> categoryList() throws UserApplicationException{
         return categoryDao.listOfCategories();
     } 
     

@@ -5,6 +5,9 @@ package com.i2i.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.i2i.model.Language;
 import com.i2i.dao.LanguageDao;
 import com.i2i.exception.UserApplicationException;
@@ -13,9 +16,11 @@ import com.i2i.exception.UserApplicationException;
  * @author Anandharaj Angamuthu
  *
  */
+@Service
 public class LanguageService {
 	
-	private LanguageDao languageDao = new LanguageDao();
+	@Autowired
+	private LanguageDao languageDao;
 	
     /**
      * <p>
@@ -30,8 +35,8 @@ public class LanguageService {
      * @throws UserApplicationException
      *         if there is any error in the given input or error while inserting into databse
      */
-    public void createLanguage(String name) throws UserApplicationException {
-    	Language language = new Language(name);
+    public void createLanguage(Language language) throws UserApplicationException {
+    	//Language language = new Language(name);
     	languageDao.insertLanguage(language);
     } 
     
@@ -44,7 +49,7 @@ public class LanguageService {
      * @return languageDao.listOfLanguages()
      *         List of languages available in the database
      */
-    public List<Language> LanguageList() throws UserApplicationException{
+    public List<Language> languageList() throws UserApplicationException{
         return languageDao.listOfLanguages();
     } 
     

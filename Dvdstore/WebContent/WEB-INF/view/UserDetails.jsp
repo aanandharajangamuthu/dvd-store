@@ -10,11 +10,11 @@
 <body>
 <center>
 <br><br><br><br><br><br>
-<div style="color: teal;font-size: 30px">User Details</div>
+<div style="color: green;font-size: 30px">User Details</div>
 <br><br>
 <c:if test="${!empty user}">
 <table border="1" bgcolor="black" width="600px">
-<tr style="background-color: teal;color: white;text-align: center;" height="40px">
+<tr style="background-color: green;color: white;text-align: center;" height="40px">
 <td>User Id</td>
 <td>Name</td>
 <td>Email</td>
@@ -32,8 +32,6 @@
 </c:forEach>
 </table>
 </c:if>
-<br>
-<a href="register.html" >Click Here to add new User</a>
 </center>
 </body>
 </html>

@@ -9,6 +9,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
 
+import org.springframework.stereotype.Repository;
+
+
 import com.i2i.model.Category;
 import com.i2i.exception.UserApplicationException;
 
@@ -23,6 +26,7 @@ import com.i2i.exception.UserApplicationException;
  * @modified 2016-07-26
  * 
  */
+@Repository
 public class CategoryDao extends GenericDao {
 	
     /**

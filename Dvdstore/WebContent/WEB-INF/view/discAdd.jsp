@@ -10,34 +10,34 @@
 </head>
 <body>
 <center>
+<br><br><br><br><br><br>
+<div style="color: teal;font-size: 30px">Disc Registration Form</div>
 <br><br>
-<div style="color: green;font-size: 30px">Disc Registration Form</div>
-<br><br>
-<c:url var="discRegistration" value="saveDisc.html"/>
+<c:url var="discRegistration" value="savedisc.html"/>
 <form:form id="discForm" modelAttribute="disc" method="post" action="${discRegistration}">
 <table width="400px" height="150px">
 <tr>
-<td><form:label style="color:white" path="name">Disc Movie Name</form:label></td>
+<td><form:label path="name">Disc Movie Name</form:label></td>
 <td><form:input path="name" /></td>
 </tr>
 <tr>
-<td><form:label style="color:white" path="name">Director Name</form:label></td>
+<td><form:label path="name">Director Name</form:label></td>
 <td><form:input path="directorName" /></td>
 </tr>
 <tr>
-<td><form:label style="color:white" path="name">Actor Name</form:label></td>
+<td><form:label path="name">Actor Name</form:label></td>
 <td><form:input path="actorName" /></td>
 </tr>
 <tr>
-<td><form:label style="color:white" path="name">Image Url</form:label></td>
+<td><form:label path="name">Image Url</form:label></td>
 <td><form:input type="file" path="imageUrl" /></td>
 </tr>
 <tr>
-<td><form:label style="color:white" path="name">Price</form:label></td>
+<td><form:label path="name">Price</form:label></td>
 <td><form:input path="price" /></td>
 </tr>
 <tr>
-<td><form:label style="color:white" path="name">Num of Stocks</form:label></td>
+<td><form:label path="name">Num of Stocks</form:label></td>
 <td><form:input path="stock" /></td>
 </tr>
 <tr><td></td><td>

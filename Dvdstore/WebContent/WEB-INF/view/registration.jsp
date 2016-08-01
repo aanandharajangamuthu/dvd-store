@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dvd store</title>
+<link rel="stylesheet" type="text/css" href="dvdStyle.css">
 </head>
 <script>
 function validateForm() {
@@ -21,34 +22,31 @@ function validateForm() {
 <body>
 <center>
 <br><br><br><br><br><br>
-<div style="color: teal;font-size: 30px">Registration Form</div>
+<div style="color: green;font-size: 30px">Registration Form</div>
 <br><br>
 <form name=myForm id="registerForm" modelAttribute="user" method="post" action="saveUser.html">
 <center>
     <table>                
         <tbody>
             <tr>
-                <td>Name<br><br></td>
+                <td style="color:white">Name<br><br></td>
                 <td><input required pattern="[a-zA-Z ]*" type="text" name="name" ><br><br></td>
             </tr>
             <tr>
-                <td>Email<br><br></td>
+                <td style="color:white">Email<br><br></td>
                 <td><input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" type="text" name="email"/><br><br></td>
             </tr>
             <tr>
-                <td>Password<br><br></td>
+                <td style="color:white">Password<br><br></td>
                 <td><input type="password" name="password" required pattern=".{6,}" title="Six or more characters"/><br><br></td>
             </tr>
             <tr>
-                <td>Mobile no<br><br></td>
+                <td style="color:white">Mobile no<br><br></td>
                 <td><input  required pattern="[789][0-9]{9}" type="text" name="mobileNumber"/><br><br></td>
             </tr>
                 <tr><td></td><td>
                     <input type="submit" value="Submit"/>
                 </td></tr>              
-                    <tr>
-                <td colspan="2"><a href="disc.html">Add Disc</a></td>
-            </tr>
         </tbody>
     </table>
 </center>

@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-    <class name="com.i2i.model.Cart" table="cart">
+    <class name="com.i2i.model.Cart" table="Cart">
         <meta attribute="class-description">
             This class contains the cart detail. 
         </meta>

@@ -2,32 +2,63 @@ package com.i2i.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  * @author manikandan 
  *
  */
+@Entity
+@Table(name="Disc")
 public class Disc {
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "id")	
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name ="categoryId")
 	private Category category ;
+	
+	@ManyToOne
+	@JoinColumn(name ="languageId")
 	private Language language;
+	
+	@Column(name = "name")	
 	private String name;
+	
+	@Column(name = "directorName")
 	private String directorName;
+	
+	@Column(name = "actorName")
 	private String actorName;
-	private byte[] imageUrl;	
+	
+	@Column(name = "imageUrl")
+	private String imageUrl;
+	
+	@Column(name = "price")
 	private int price;
+	
+	@Column(name = "stock")
 	private int stock;
+	
 	private Set<Cart> cart = new HashSet<Cart> ();
 	 
 	public Disc(){};
 	
 	
-	public Disc(Category category, Language language, String name, String directorName, String actorName, byte[] imageUrl, int stock, int price) {
-		this.category = category;
-		this.language = language;
+	public Disc(String name, String directorName, String actorName, String imageUrl, int stock, int price) {
 		this.name = name;
 		this.directorName = directorName;
 		this.actorName = actorName;
-		this.setImageUrl(imageUrl);
+		this.imageUrl = imageUrl;
 		this.stock = stock;
 		this.price = price;	
 	}
@@ -80,7 +111,17 @@ public class Disc {
 	
 	public void setActorName(String actorName) {
 		this.actorName = actorName;
-	}	
+	}
+		
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 
 	public int getPrice() {
 		return price;
@@ -105,16 +146,6 @@ public class Disc {
 
 	public void setCart(Set<Cart> cart) {
 		this.cart = cart;
-	}
-
-
-	public byte[] getImageUrl() {
-		return imageUrl;
-	}
-
-
-	public void setImageUrl(byte[] imageUrl) {
-		this.imageUrl = imageUrl;
 	}
 
 }

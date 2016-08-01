@@ -6,27 +6,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Language Registration</title>
+<title>Category Registration</title>
 </head>
 <body>
 <center>
-<br><br><br><br><br><br>
-<div style="color: green;font-size: 30px">Language Registration Form</div>
 <br><br>
-<c:url var="languageRegistration" value="saveLanguage.html"/>
-<form:form id="languageForm" modelAttribute="language" method="post" action="${languageRegistration}">
+<div style="color: green;font-size: 30px">To Find Particular Disc</div>
+<br><br>
+<c:url var="getDisc" value="discFind.html"/>
+<form:form id="discForm" modelAttribute="disc" method="post" action="${getDisc}">
 <table width="400px" height="150px">
 <tr>
-<td><form:label style="color:white" path="name">Language Name</form:label></td>
-<td><form:input  path="name"/></td>
+<td><form:label style="color:white" path="name">Disc Id</form:label></td>
+<td><form:input path="id" /></td>
 </tr>
 <tr><td></td><td>
-<input type="submit" value="Register" />
+<input type="submit" value="Submit" />
 </td></tr>
 </table>
 </form:form>
 <br>
-<a href="languageList.html" >Click Here to see Language List</a>
+<a href="discList.html" >Click Here to see Disc List</a>
 </center>
 </body>
 </html>

@@ -14,6 +14,7 @@
         <property name="name" column="name" type="string"/>
         <property name="directorName" column="directorName" type="string"/>
         <property name="actorName" column="actorName" type="string"/>
+        <property name="imageUrl"  column="imageUrl" type="binary"/>
         <property name="stock" column="stock" type="string"/>
         <property name="price" column="price" type="int"/>
         <many-to-one name="category" class="model.Category" lazy ="false" fetch="select" >

@@ -11,7 +11,7 @@
 <body>
 <center>
 <br><br><br><br><br><br>
-<div style="color: teal;font-size: 30px">Being Java Guys | Registration Form</div>
+<div style="color: green;font-size: 30px">Being Java Guys | Registration Form</div>
 <br><br>
 <c:url var="userRegistration" value="saveUser.html"/>
 <form:form id="registerForm" modelAttribute="user" method="post" action="${userRegistration}">
@@ -37,8 +37,6 @@
 </td></tr>
 </table>
 </form:form>
-<br>
-<a href="userList.html" >Click Here to see User List</a>
 </center>
 </body>
 </html>

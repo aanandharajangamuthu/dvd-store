@@ -6,6 +6,11 @@ package com.i2i.service;
 import java.util.List;
 import java.util.Set;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
 import com.i2i.model.Disc;
 import com.i2i.model.Category;
 import com.i2i.model.Language;
@@ -16,9 +21,11 @@ import com.i2i.exception.UserApplicationException;
  * @author Anandharaj Angamuthu
  *
  */
+@Service
 public class DiscService {
 	
-	private DiscDao discDao = new DiscDao();
+	@Autowired
+	private DiscDao discDao;
 	
     /**
      * <p>
@@ -43,7 +50,7 @@ public class DiscService {
      * @throws UserApplicationException
      *         if there is any error in the given input or error while inserting into databse
      */
-    public void createDisc(Disc disc) throws UserApplicationException {    	
+    public void createDisc(Disc disc) throws UserApplicationException {
     	discDao.insertDisc(disc);
     } 
     
@@ -56,7 +63,7 @@ public class DiscService {
      * @return discDao.listOfDiscs()
      *         List of discs available in the database
      */
-    public List<Disc> DiscList() throws UserApplicationException{
+    public List<Disc> discList() throws UserApplicationException{
         return discDao.listOfDiscs();
     } 
     
@@ -115,7 +122,7 @@ public class DiscService {
      * @throws ApplicaionException
      *         if there is any error in the given input or error while updating into databse  
      */  
-    public void updateByDiscId(int id, String name, String directorName, String actorName, byte[] imageUrl, int stock, int price) throws UserApplicationException {
+    public void updateByDiscId(int id, String name, String directorName, String actorName, String imageUrl, int stock, int price) throws UserApplicationException {
     	Disc disc = discDao.findDiscById(id);   
     	disc.setName(name);
     	disc.setDirectorName(directorName);

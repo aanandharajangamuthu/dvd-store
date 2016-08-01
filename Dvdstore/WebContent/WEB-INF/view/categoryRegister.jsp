@@ -11,13 +11,13 @@
 <body>
 <center>
 <br><br><br><br><br><br>
-<div style="color: teal;font-size: 30px">Category Registration Form</div>
+<div style="color: green;font-size: 30px">Category Registration Form</div>
 <br><br>
 <c:url var="categoryRegistration" value="saveCategory.html"/>
 <form:form id="categoryForm" modelAttribute="category" method="post" action="${categoryRegistration}">
 <table width="400px" height="150px">
 <tr>
-<td><form:label path="name">Category Name</form:label></td>
+<td><form:label style="color:white" path="name">Category Name</form:label></td>
 <td><form:input path="name" /></td>
 </tr>
 <tr><td></td><td>

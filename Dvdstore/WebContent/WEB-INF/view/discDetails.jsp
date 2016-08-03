@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,22 +23,25 @@
 <td>Image</td>
 <td>Price</td>
 <td>Stock</td>
-</tr>
+<td>Buy</td>
+<td></td>
+</tr>  
 <c:forEach items="${disc}" var="disc">
+<form:form id="discId" modelAttribute="cart" method="post" action="buyDisc.html">
 <tr style="background-color:white;color: black;text-align: center;" height="30px" >
-<td><c:out value="${disc.id}"/></td>
+<td><input type="hidden" id="id" name="id" value="${disc.id}"/></td>
 <td><c:out value="${disc.name}"/></td>
 <td><c:out value="${disc.directorName}"/></td>
 <td><c:out value="${disc.actorName}"/></td>
-<td><c:out value="${disc.imageUrl}"/></td>
+<td><img src="<c:out value="${disc.imageUrl}"/>" alt="image" border=3 height=100 width=100></img></td>
 <td><c:out value="${disc.price}"/></td>
 <td><c:out value="${disc.stock}"/></td>
+<td><input type="submit" value="buy"></td>
 </tr>
+</form:form>
 </c:forEach>
 </table>
 </c:if>
-<br>
-<a href="registerDisc.html" >Click Here to add new Disc</a>
 </center>
 </body>
 </html>

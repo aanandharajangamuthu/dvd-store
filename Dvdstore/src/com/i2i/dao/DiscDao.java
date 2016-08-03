@@ -176,7 +176,7 @@ public class DiscDao extends GenericDao {
             session.update(disc);
             transaction.commit();
         }catch(HibernateException e) {
-            throw new UserApplicationException("unable to allocate category");
+            throw new UserApplicationException("unable to allocate language");
         }finally {
             closeSession(session); 
       }

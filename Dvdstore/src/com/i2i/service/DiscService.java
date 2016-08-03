@@ -164,7 +164,7 @@ public class DiscService {
      */
     public void languageForDiscs(Set<Disc> discs, Language language) throws UserApplicationException {
         for(Disc disc : discs) {
-            discDao.allocateLanguageToDiscs(disc, language);
+          discDao.allocateLanguageToDiscs(disc, language);
         }
     }
 

@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Disc Detail</title>
+<link rel="stylesheet" type="text/css" href="dvdStyle.css">
+</head>
+<body>
+<div id="shell">
+<div align="center" style="color: green;font-size: 30px">Buy Disc</div>
+<br><br>
+<c:if test="${!empty BuyDisc}">
+<form:form id="discId" modelAttribute="cart" method="post" action="addProduct.html">
+<div class="upleft">
+<img src="<c:out value="${BuyDisc.imageUrl}"/>" alt="image" border=3 height=200 width=200></img>
+</div>
+<div style="color:green;font-size:120%">
+<p><input type="hidden" id="id" name="id" value="${BuyDisc.id}"/></p>
+<i><strong><p><c:out value="${BuyDisc.name}"/></p><strong></i>
+</div>
+<div style="color:white">
+<p> Director: <c:out value="${BuyDisc.directorName}"/><p>
+<p> Actor: <c:out value="${BuyDisc.actorName}"/></p>
+<p> Price: <c:out value="${BuyDisc.price}"/></p>
+<p> quantity: <input required="required" type="text" class="quantity" name="quantity"/><p>
+<p><input type="submit" class="addCart" value="Add to Cart"/><p>
+</div>
+</form:form>
+</c:if>
+</div>
+</body>
+</html>

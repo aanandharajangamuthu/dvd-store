@@ -73,5 +73,5 @@ public class LanguageController {
 	public ModelAndView welcome() {
 		return new ModelAndView("index");
 	}*/
-
+	
 }

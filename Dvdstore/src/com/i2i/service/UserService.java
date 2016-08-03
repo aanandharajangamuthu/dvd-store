@@ -105,5 +105,11 @@ public class UserService {
         userDao.updateUser(user);
     }   
     
+    
+    public User findUser(User user) throws UserApplicationException  {
+    	return userDao.searchUser(user);
+    }
+
+
 
 }

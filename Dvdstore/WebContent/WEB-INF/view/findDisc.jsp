@@ -10,6 +10,9 @@
 </head>
 <body>
 <center>
+<br><br><br><br><br><br>
+<div style="color: green;font-size: 30px">Disc Details</div>
+<br><br>
 <br><br>
 <div style="color: green;font-size: 30px">To Find Particular Disc</div>
 <br><br>

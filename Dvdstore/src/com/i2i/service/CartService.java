@@ -5,9 +5,13 @@ package com.i2i.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.i2i.dao.CartDao;
 import com.i2i.exception.UserApplicationException;
 import com.i2i.model.Cart;
+import com.i2i.model.Disc;
 
 /**
  * <h1>UserService</h1>
@@ -17,8 +21,17 @@ import com.i2i.model.Cart;
  * @author Manikandan
  *
  */
+@Service
 public class CartService {
-    private CartDao cartDao = new CartDao();
+	
+	@Autowired
+    private CartDao cartDao;
+    
+    
+    
+    public void addCart(Cart cart)  throws UserApplicationException  {
+    	cartDao.insertCart(cart);
+    }
 	
     /**
      * <p>
@@ -59,6 +72,11 @@ public class CartService {
     public void removeCartById(int cartId) throws UserApplicationException  {       
     	cartDao.deleteCartById(cartId);       
     }
+    
+    public void addToCart(Disc disc, Cart cart) throws UserApplicationException {
+    	cartDao.insertDiscToCart(disc ,cart);
+    } 
+    
 
 
 }

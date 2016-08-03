@@ -4,18 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Admin access</title>
+<title> Funtainment</title>
 <link rel="stylesheet" type="text/css" href="dvdStyle.css">
 </head>
-<body bgcolor="black">
-<img src="disc1.jpeg" alt="disc icon" width="100%" height="150"><br>
-<table background="green">
-<tr>
-<td><a href="register.html"target="iframe_user"><input type="button" class="button" value="Register"></a></td>
-<td><a href="login.html" target="iframe_user"><input type="button" class="button" value="Login"></a><br></td>
-</tr>
-</table>
-  <iframe style="bottom:80px" src="userAccess.jsp" allowtransparency="yes" scrolling="no" height="500px" width="100%" src="demo_iframe.htm" name="iframe_user" style="border:none"></iframe>
-  <center><a href="home.jsp" ><input type="button" class="button" value="Go Home!!"></a></center>
+ <body bgcolor="black">
+ <div id="shell">
+  <div id="header"> 
+  <h1 id="logo"><a href="#">Fact</a></h1>
+ <i><h2 style="color:green">Be a Fanatic and Admire Everything </h2></i>
+ </div>
+ <div id="navigation">
+      <ul>              
+        <li><a href="#">IN THEATERS</a></li>
+        <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>        
+        <li><a href="login.html">LOGIN</a></li>
+        <li><a href="register.html">REGISTER</a></li>
+        <li><a href="home.jsp">Go Back!!!</a>
+      </ul>
+    </div>
+</div>
 </body>
 </html>

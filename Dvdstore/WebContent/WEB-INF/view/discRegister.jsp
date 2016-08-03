@@ -18,27 +18,29 @@
 <table width="400px" height="150px">
 <tr>
 <td><form:label style="color:white" path="name">Disc Movie Name</form:label></td>
-<td><form:input path="name" /></td>
+<td><form:input required="required" path="name" /></td>
 </tr>
 <tr>
 <td><form:label style="color:white" path="name">Director Name</form:label></td>
-<td><form:input path="directorName" /></td>
+<td><form:input required="required" path="directorName" /></td>
 </tr>
 <tr>
 <td><form:label style="color:white" path="name">Actor Name</form:label></td>
-<td><form:input path="actorName" /></td>
+<td><form:input required="required" path="actorName" /></td>
 </tr>
 <tr>
 <td><form:label style="color:white" path="name">Image Url</form:label></td>
-<td><form:input type="file" path="imageUrl" /></td>
+<td><form:input required="required" type="file" path="imageUrl" /></td>
 </tr>
 <tr>
 <td><form:label style="color:white" path="name">Price</form:label></td>
-<td><form:input path="price" /></td>
+<td><form:input required="required" path="price" /></td>
 </tr>
 <tr>
 <td><form:label style="color:white" path="name">Num of Stocks</form:label></td>
-<td><form:input path="stock" /></td>
+<td><form:input required="required" path="stock" /></td>
+</tr>
+<tr>
 </tr>
 <tr><td></td><td>
 <input type="submit" value="Register" />

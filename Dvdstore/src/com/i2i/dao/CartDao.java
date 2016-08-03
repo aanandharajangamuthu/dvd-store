@@ -8,9 +8,11 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.i2i.exception.UserApplicationException;
 import com.i2i.model.Cart;
+import com.i2i.model.Disc;
 import com.i2i.model.User;
 
 /**
@@ -20,7 +22,24 @@ import com.i2i.model.User;
  * @author Manikandan
  *
  */
+@Repository
 public class CartDao extends GenericDao {
+	
+	
+	
+	public void insertCart(Cart cart) throws UserApplicationException {
+		Session session = checkSessionFactory();
+    	Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(cart); 
+            transaction.commit();
+        } catch (HibernateException e) {
+            throw new UserApplicationException("unable to insert Cart",e);
+        } finally {
+            closeSession(session);
+        }      
+	}
 	
 	/**
      * <p>
@@ -52,7 +71,7 @@ public class CartDao extends GenericDao {
 	public Cart findCartById(int cartId) throws UserApplicationException {       
         Session session = checkSessionFactory();
         try {            
-            return (Cart)session.get(User.class, cartId);           
+            return (Cart)session.get(Cart.class, cartId);           
         } catch (HibernateException e) {            
             throw new UserApplicationException("Could not find for this cartId "+cartId, e);
         } finally {
@@ -84,5 +103,21 @@ public class CartDao extends GenericDao {
            closeSession(session);
         }    
     
+	}
+	
+	
+	public void insertDiscToCart(Disc disc, Cart cart) throws UserApplicationException {
+		Session session = checkSessionFactory();
+        Transaction transaction = null;          
+        try {
+        	transaction = session.beginTransaction();                                         
+        	cart.setDisc(disc);
+        	session.update(cart); 
+        	transaction.commit();
+        } catch (HibernateException e) {            
+            throw new UserApplicationException("Could not Add for this Disc to Cart "+disc.getName(), e);
+         } finally {
+            closeSession(session);
+         } 
 	}
 }

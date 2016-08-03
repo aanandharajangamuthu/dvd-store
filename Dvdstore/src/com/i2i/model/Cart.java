@@ -35,6 +35,12 @@ public class Cart {
 	
 	public Cart(){}
 	
+	public Cart(Disc disc, int quantity, double totalPrice) {		
+		this.disc = disc;
+		this.quantity = quantity;
+		this.totalPrice  = totalPrice;
+	}
+	
 	public Cart(PurchaseOrder purchaseOrder, Disc disc, int quantity, double totalPrice) {
 		this.purchaseOrder = purchaseOrder;
 		this.disc = disc;

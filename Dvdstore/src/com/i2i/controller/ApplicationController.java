@@ -29,12 +29,7 @@ public class ApplicationController {
 	
 	private UserService userService = new UserService();
 	
-	@RequestMapping("/home")
-	public ModelAndView homePage(@ModelAttribute("user") User user,
-			BindingResult result) {
-		
-		return new ModelAndView("home");
-	}
+	
 	
 	@RequestMapping("/register")
 	public ModelAndView getRegister(@ModelAttribute("user") User user,
@@ -66,6 +61,30 @@ public class ApplicationController {
 		}
 		return new ModelAndView("UserDetails", model);
 	}
+	
+	@RequestMapping("/login")
+	public ModelAndView getLogin(@ModelAttribute("user") User user,
+			BindingResult result) {		
+		return new ModelAndView("login");
+	}
+	
+	@RequestMapping("/checkUser")
+	public ModelAndView checkIfUser(@ModelAttribute("user") User user,
+			BindingResult result) {
+		try {
+		    User loginUser  =  userService.findUser(user);		
+ 		    if(loginUser.getEmail().equals("rajini@gmail.com") 
+		    		&& loginUser.getPassword().equals("kabali")) {
+		    	return new ModelAndView("index");
+		    } else if(null == loginUser) {
+		    	return new ModelAndView("registration");
+		    }
+		} catch(UserApplicationException e) {
+		    System.out.println("Exception occur");		
+		}		
+		return new ModelAndView("login");
+	}	
+	
 }
 	
 	

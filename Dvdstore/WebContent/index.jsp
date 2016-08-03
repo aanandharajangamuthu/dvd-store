@@ -21,9 +21,11 @@
 <tr>
 <td><a href="showDisc.html" target="iframe_admin"><input type="button" class="button" value="Disc by Id"></a></td>
 <td><a href="userList.html" target="iframe_admin"><input type="button" class="button" value="List of Users"></a><br></td>
+<td><a href="assignLanguage.html" target="iframe_admin"><input type="button" class="button" value="Assign Language"></a><br></td>
+<td><a href="assignCategory.html" target="iframe_admin"><input type="button" class="button" value="Assign Category"></a><br></td>
 </tr>
 </table>
-  <iframe style="bottom:80px" src="adminAccess.jsp" allowtransparency="yes" scrolling="no" height="500px" width="100%" src="demo_iframe.htm" name="iframe_admin" style="border:none"></iframe>
+  <iframe style="bottom:80px" src="adminAccess.jsp" allowtransparency="yes" scrolling="yes" height="500px" width="100%" src="demo_iframe.htm" name="iframe_admin" style="border:none"></iframe>
   <center><a href="home.jsp" ><input type="button" class="button" value="Go Home!!"></a></center>
 </body>
 </html>

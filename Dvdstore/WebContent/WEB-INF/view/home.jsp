@@ -18,14 +18,14 @@
       <ul>              
         <li><a href="#">IN THEATERS</a></li>
         <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>        
-        <li><div><a href="userDetail.html"><c:out value="${currentUser.name}"/></a></div></li>
-        <li><a href="cartList.html" target="iframe_a">My cart</a></li>
-        <li><a href="signOut.html">Sign Out!!!</a></li>
+        <li><a href="login.html">LOGIN/REGISTER</a></li>
+        <li><a href="cartList.html" target="iframe_a">CART</a></li>
       </ul>
     </div>
     <div id="sub-navigation">
     <ul>
-     <li><a href="user_home.html">Home</a></li>
+     <li><a href="home.jsp">Home</a></li>
+       
      <li><div class = "dropdown"><a href="movieList.html" target="iframe_a">Movies</a>
      <div class="dropdown-content">
        <a href="tamilMovies.html" target="iframe_a">Tamil</a>
@@ -41,15 +41,15 @@
        <a href="hindiSongs.html" target="iframe_a">Hindi</a>
      </div>
      </div>
-     </li>  
-     <li><div class="dropdown"><a href="showList.html" target="iframe_a">Tv Shows</a>
+     </li>
+     <li><div class="dropdown"> <a href="showList.html" target="iframe_a">Tv Shows</a>
      <div class="dropdown-content">
        <a href="tamilShows.html" target="iframe_a">Tamil</a>
        <a href="englishShows.html" target="iframe_a">English</a>
        <a href="hindiShows.html" target="iframe_a">Hindi</a>
      </div>
      </div>
-   </li>
+     </li>
   </ul>
   </div>
   </div>

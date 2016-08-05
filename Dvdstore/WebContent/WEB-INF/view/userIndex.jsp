@@ -21,13 +21,13 @@
         <li><a href="signOut.html">Sign Out!!!</a></li>
       </ul>
     </div>
-    <center><p style="color:white"> Welcome User</p></center>
-    
-  <div style="color:white">
+ <br><br><br><br><br><br>   
+ <center> <div style="color:white">
+  <center><p style="color:white"> Welcome User</p></center><br><br><br><br>
    <p>${currentUser.name}</p>
-   <p> ${currentUser.email}</p>
-   <p> ${currentUser.mobilNumber}</p>
-  </div>
+   <p>${currentUser.email}</p>
+   <p>${currentUser.mobileNumber}</p>
+  </div></center>
 </div>
 </body>
 </html>

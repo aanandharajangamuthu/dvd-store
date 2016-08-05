@@ -181,5 +181,20 @@ public class DiscDao extends GenericDao {
             closeSession(session); 
       }
     }
+    
+    public void updateStock(Disc disc, int stock) throws UserApplicationException {
+    	Session session = checkSessionFactory();
+    	Transaction transaction = null;
+        try {
+        	transaction = session.beginTransaction();
+            disc.setStock(stock);
+            session.update(disc);
+            transaction.commit();
+        } catch(HibernateException e) {
+            throw new UserApplicationException("unable to modified Stock");
+        } finally {
+            closeSession(session); 
+        }    
+    }
 
 }

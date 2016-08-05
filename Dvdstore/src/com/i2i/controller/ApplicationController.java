@@ -68,10 +68,19 @@ public class ApplicationController {
 		
 		return new ModelAndView("registration");
 	}
-  
+	
+	@RequestMapping("/userDetail")
+	public ModelAndView getUserDetail(@ModelAttribute("user") User user,
+			BindingResult result) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("currentUser", currentUser);
+		return new ModelAndView("userIndex",model);
+	}
+	
 	@RequestMapping("/saveUser")
 	public ModelAndView saveUserData(@ModelAttribute("user") User user,
 			BindingResult result) {
+
 		try {
 		    userService.addUser(user);
 			System.out.println("Save User Data");
@@ -79,7 +88,7 @@ public class ApplicationController {
 		    System.out.println("Exception occur");		
 		}
 		
-		return new ModelAndView("redirect:/userList.html");
+		return new ModelAndView("home");
 	}
 	
 	@RequestMapping("/userList")
@@ -93,6 +102,14 @@ public class ApplicationController {
 		return new ModelAndView("UserDetails", model);
 	}
 	
+	@RequestMapping("/user_home")
+	public ModelAndView userHomePage(@ModelAttribute("user") User user,
+			BindingResult result) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("currentUser", currentUser);
+		return new ModelAndView("userHome",model);
+	}
+	
 	@RequestMapping("/login")
 	public ModelAndView getLogin(@ModelAttribute("user") User user,
 			BindingResult result) {	
@@ -101,21 +118,27 @@ public class ApplicationController {
 	}
 	
 	@RequestMapping("/checkUser")
-	public ModelAndView checkIfUser(@ModelAttribute("user") User user,
+	public ModelAndView checkAdmin(@ModelAttribute("user") User user,
 			BindingResult result) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 		    User loginUser  =  userService.findUser(user);	
 		    currentUser = loginUser;
-		    model.put("user", loginUser);
+		    model.put("currentUser", currentUser);
 		    if(null != loginUser && loginUser.getIsAdmin() == 1) {
 		    	System.out.println("Admin page");
 		    	return new ModelAndView("index");
 		    } else if(null != loginUser){
 		    	System.out.println("User page");
-		    	loginUser.getName();
-		    	currentUser = loginUser;
-		    	return new ModelAndView("userHome",model);
+		    	if(carts.isEmpty()) {
+		    		System.out.println("entering into user home");
+		    		return new ModelAndView("userHome",model);
+		    	} else {
+		    		System.out.println("entering into purchase page");
+		    		return new ModelAndView("redirect:/purchaseDisc.html");
+		    	}
+		    	//loginUser.getName();
+		    	//return new ModelAndView("userHome",model);
 		    }
 		} catch(UserApplicationException e) {
 		    System.out.println("Exception occur");		
@@ -123,33 +146,42 @@ public class ApplicationController {
 		return new ModelAndView("tryAgain");
 	}
 	
+	@RequestMapping("/signOut")
+	public ModelAndView logOut(@ModelAttribute("user") User user,
+			BindingResult result) {	
+		totalAmount = 0;
+		currentUser = null;
+		carts.clear();
+		System.out.println("Entering into Log out");
+		return new ModelAndView("home");
+	}
+	
+	
 // Cart Controller
 		
 	
-	static double totalAmount ;
-	//private static List<Cart> carts = new ArrayList<Cart>();
-	private static Set<Cart> carts = new HashSet<Cart> ();
-	
+	static double totalAmount ;	
+	private static Set<Cart> carts = new HashSet<Cart> ();	
 	@RequestMapping(value = "addProduct",method = RequestMethod.POST)
-	public ModelAndView getCart(@RequestParam("id") int id ,
+	public ModelAndView getCart(@RequestParam("id") int id , @RequestParam("stock") int stock, 
 			@RequestParam("quantity") int quantity) {
 		Map<String, Object> model = new HashMap<String, Object>();		
 		try {
+			stock = stock - quantity;
 			Disc disc = discService.findByDiscId(id);			
-			double totalPrice  = quantity * disc.getPrice();			
+			double totalPrice  = quantity * disc.getPrice();
+			discService.updateByDiscStock(disc,stock);
 			Cart cart = new Cart(disc,quantity,totalPrice);			
 			cartService.addCart(cart);	
 			carts.add(cart);
 			totalAmount += totalPrice;		
 			model.put("cart",carts);
-			model.put("totalAmount",totalAmount);
-				
+			model.put("totalAmount",totalAmount);				
 		} catch (UserApplicationException e) {
 			System.out.println(e);
 		}		
 		return new ModelAndView("Cart",model);
 	}
-	
 	
 	@RequestMapping("/deleteCart")
 	public ModelAndView getCart(@RequestParam("id") int id) {
@@ -180,12 +212,12 @@ public class ApplicationController {
 	@RequestMapping("/cartList")
 	public ModelAndView cartList() {
 		Map<String, Object> model = new HashMap<String, Object>();
-		totalAmount = 0;
+		double amount = 0;
 		for(Cart cart:carts) {				
-			totalAmount += cart.getTotalPrice();         
+			amount += cart.getTotalPrice();         
 		}
 		model.put("cart", carts);			
-		model.put("totalAmount", totalAmount);
+		model.put("totalAmount", amount);
 		return new ModelAndView("Cart", model);
 	}
 	
@@ -205,10 +237,14 @@ public class ApplicationController {
 	
 	
 	@RequestMapping("/purchase")
-	public ModelAndView getPurchase(@ModelAttribute("user") User user, BindingResult result) {		
-		
-		return new ModelAndView("PurchaseLogin");
-	 
+	public ModelAndView getPurchase(@ModelAttribute("user") User user, BindingResult result) {
+		if(currentUser != null) {
+			System.out.println("User already logged in");
+			return new ModelAndView("redirect:/purchaseDisc.html");
+		}
+		else {
+		return new ModelAndView("redirect:/login.html");
+	    }
 	}
 	
     PurchaseOrder purchaseOrder = null;
@@ -218,26 +254,44 @@ public class ApplicationController {
 
 		Map<String, Object> model = new HashMap<String, Object>();		
 		try {
-		    User loginUser  =  userService.findUser(user);	
-		    currentUser = loginUser;
-		    if(null != loginUser) {		    	
-		    	purchaseOrder = new PurchaseOrder(carts,loginUser);	
-		    	System.out.println(purchaseOrder.getId());
-		    	model.put("totalAmount", totalAmount);	
-		    	model.put("cart", purchaseOrder.getCart());
-		    	model.put("order", purchaseOrder);
-		        return new ModelAndView("PurchaseOrder",model);
-		    }
+			if(currentUser == null ) {
+		    User newUser  =  userService.findUser(user);	
+		        if(null != newUser) {	
+		    	    System.out.println("newUser");
+		    	    purchaseOrder = new PurchaseOrder(carts,newUser);	
+		    	    System.out.println(purchaseOrder.getId());
+		    	    model.put("totalAmount", totalAmount);	
+		    	    model.put("cart", purchaseOrder.getCart());
+		    	    model.put("order", purchaseOrder);
+		            return new ModelAndView("PurchaseOrder",model);
+		        } else {
+		    		return new ModelAndView("PurchaseLogin");
+
+		        }
+		        
+			} else {
+				purchaseOrder = new PurchaseOrder(carts,currentUser);	
+	    	    System.out.println("currentUser");
+	    	    System.out.println(purchaseOrder.getId());
+	    	    model.put("totalAmount", totalAmount);	
+	    	    model.put("cart", purchaseOrder.getCart());
+	    	    model.put("order", purchaseOrder);
+	            return new ModelAndView("PurchaseOrder",model);
+			}
+		    	
 		} catch(UserApplicationException e) {
 		    System.out.println("Exception occur");		
-		}		
+		}
 		return new ModelAndView("PurchaseLogin");
 	}	
 	
 	
 	@RequestMapping("/success")
 	public ModelAndView conformPurchase() {		
-		 System.out.println("Sucess");		
+		 System.out.println("Sucess");	
+		 totalAmount = 0;
+		 Map<String, Object> model = new HashMap<String, Object>();	
+		 model.put("currentUser", currentUser);
 		try {								
 			purchaseOrderService.add(purchaseOrder);
 			for(Cart cart:purchaseOrder.getCart()) {				
@@ -247,7 +301,7 @@ public class ApplicationController {
 		} catch (UserApplicationException e) {
 			System.out.println(e);			
 		}
-		return new ModelAndView("Success");
+		return new ModelAndView("Success",model);
 	}
 // Category Controller
 		

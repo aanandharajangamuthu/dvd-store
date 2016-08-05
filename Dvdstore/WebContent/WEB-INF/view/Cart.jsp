@@ -43,7 +43,7 @@
 </c:forEach>
 </table>
 <br><br>
-<a href="purchase.html"><input type="button" class="button" value="Purchase"></a><br>
+<a href="purchase.html" target="_top"><input type="button" class="button" value="Purchase"></a><br>
 </c:if>
 <br>
 </center>

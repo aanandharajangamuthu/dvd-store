@@ -81,7 +81,6 @@ public class CartService {
     public void updateCart(Cart cart, PurchaseOrder purchaseOrder) throws UserApplicationException {
     	cartDao.updateCartByPurchaseOrder(cart, purchaseOrder);
     }
-    
 
 
 }

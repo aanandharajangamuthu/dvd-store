@@ -167,5 +167,10 @@ public class DiscService {
           discDao.allocateLanguageToDiscs(disc, language);
         }
     }
+    
+    public void updateByDiscStock(Disc disc, int stock) throws UserApplicationException {
+       	discDao.updateStock(disc,stock);
+       }
+
 
 }

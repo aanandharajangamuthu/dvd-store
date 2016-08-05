@@ -28,6 +28,7 @@
 <li><a href="showDisc.html" target="iframe_admin">Disc by Id</a></li>
 <li><a href="userList.html" target="iframe_admin">List of Users</a></li>
 <li><a href="cartList.html" target="iframe_admin">Cart</a></li>
+<li><a href="userHome.jsp">Home</a></li>
 <li><a href="home.jsp">SignOut!!!</a></li>
 </ul></div>
 <iframe frameborder="0"  allowtransparency="yes" scrolling="yes" height="500px" width="100%" name="iframe_admin" style="border:none";></iframe>

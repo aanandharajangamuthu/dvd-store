@@ -16,7 +16,7 @@
       <ul>              
         <li><a href="#">IN THEATERS</a></li>
         <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>
-        <li><a href="userIndex.jsp">Go Back!!!</a>
+        <li><a href="home.jsp">Go Back!!!</a>
       </ul>
     </div>
 <center>

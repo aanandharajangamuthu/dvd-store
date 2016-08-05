@@ -7,19 +7,19 @@
 <title>Dvd store</title>
 <link rel="stylesheet" type="text/css" href="dvdStyle.css">
 </head>
-<script>
-function validateForm() {
-    var name = document.forms["myForm"]["name"].value;
-    var email = document.forms["myForm"]["email"].value;
-    var password = document.forms["myForm"]["password"].value;
-    var mobileNumber = document.forms["myForm"]["mobileNumber"].value;
-    if (name == ""|| email == ""||password == ""|| mobileNumber == "") {
-        alert("All field must be filled out");
-        return false;
-    }   
-}   
-</script>
  <body bgcolor="black">
+ <div id="shell">
+  <div id="header"> 
+  <h1 id="logo"><a href="#">Fact</a></h1>
+ <i><h2 style="color:green">Be a Fanatic and Admire Everything </h2></i>
+ </div>
+ <div id="navigation">
+      <ul>              
+        <li><a href="#">IN THEATERS</a></li>
+        <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>
+        <li><a href="home.jsp">Go Back!!!</a>
+      </ul>
+    </div>
 <center>
 <br><br><br><br><br><br>
 <div style="color: green;font-size: 30px">Registration Form</div>

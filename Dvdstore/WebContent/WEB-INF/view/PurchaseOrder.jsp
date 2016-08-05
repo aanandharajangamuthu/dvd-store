@@ -9,10 +9,22 @@
 <title>Disc Detail</title>
 <link rel="stylesheet" type="text/css" href="dvdStyle.css">
 </head>
-<body>
-<div id="shell">
+<body bgcolor="black">
+ <div id="shell">
+  <div id="header"> 
+  <h1 id="logo"><a href="#">Fact</a></h1>
+ <i><h2 style="color:green">Be a Fanatic and Admire Everything </h2></i>
+ </div>
+     <div id="navigation">
+      <ul>              
+        <li><a href="user_home.html">Home</a></li>
+        <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>        
+        <li><div><a href="userIndex.jsp"><c:out value="${order.getUser().getName()}"/></a></div></li>
+        <li><a href="signOut.html">Sign Out!!!</a></li>
+      </ul>
+    </div>
+<br><br><br><br><br><br>
 <div align="center" style="color: green;font-size: 30px">Order Details</div>
-<br><br>
 <h1 style = "color:white">CustomerName : ${order.getUser().getName()}</h1><br><br>
 <c:if test="${!empty order}">
 <p style = "color:white">Total Amount : <c:out value="${totalAmount}"/></p>
@@ -37,6 +49,7 @@
 </table>
  </c:if>
 <a href="success.html"><input type="button" class="button" value="Confirm Order"/></a><br>
+</div>
 </div>
 </body>
 </html>

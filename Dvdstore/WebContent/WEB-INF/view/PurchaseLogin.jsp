@@ -9,21 +9,11 @@
  <body bgcolor="black">
  <div id="shell">
   <div id="header"> 
-  <h1 id="logo"><a href="#">Fact</a></h1>
- <i><h2 style="color:green">Be a Fanatic and Admire Everything </h2></i>
- </div>
- <div id="navigation">
-      <ul>              
-        <li><a href="#">IN THEATERS</a></li>
-        <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>
-        <li><a href="userIndex.jsp">Go Back!!!</a>
-      </ul>
-    </div>
 <center>
 <br><br><br><br><br><br>
 <div style="color: green;font-size: 30px">Login Form</div>
 <br><br>
-<form name=myForm id="registerForm" modelAttribute="user" method="post" action="checkUser.html">
+<form name=myForm id="registerForm" modelAttribute="user" method="post" action="purchaseDisc.html">
 <center>
     <table>                
         <tbody>           

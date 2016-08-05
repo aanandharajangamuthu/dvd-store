@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.i2i.exception.UserApplicationException;
 import com.i2i.model.Cart;
 import com.i2i.model.Disc;
+import com.i2i.model.PurchaseOrder;
 import com.i2i.model.User;
 
 /**
@@ -119,5 +120,22 @@ public class CartDao extends GenericDao {
          } finally {
             closeSession(session);
          } 
+	}
+	
+	public void updateCartByPurchaseOrder(Cart cart,PurchaseOrder purchaseOrder) throws UserApplicationException {
+		System.out.println(cart);
+		System.out.println(purchaseOrder.getId());
+		Session session = checkSessionFactory();
+        Transaction transaction = null;          
+        try {
+        	transaction = session.beginTransaction();                                         
+        	cart.setPurchaseOrder(purchaseOrder);
+        	session.update(cart); 
+        	transaction.commit();
+        } catch (HibernateException e) {            
+            throw new UserApplicationException("Could not Update for this Cart "+cart.getId(), e);
+         } finally {
+            closeSession(session);
+         } 	
 	}
 }

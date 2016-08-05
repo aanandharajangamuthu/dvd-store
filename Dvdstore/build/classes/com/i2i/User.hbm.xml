@@ -15,6 +15,7 @@
         <property name="email" column="email" type="string"/>
         <property name="password" column="password" type="string"/>
         <property name="mobileNumber" column="mobileNum" type="string"/>
+        <property name="isAdmin" column="isAdmin" type="byte"/>
         <set name="purchaseOrders" table="PurchaseOrder" inverse="true" lazy ="false" fetch="select">
             <key>
                 <column name="id" not-null="true"/>

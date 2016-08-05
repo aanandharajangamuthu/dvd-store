@@ -8,8 +8,10 @@ import java.util.List;
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.i2i.exception.UserApplicationException;
+import com.i2i.model.Disc;
 import com.i2i.model.PurchaseOrder;
 import com.i2i.model.User;
 
@@ -20,6 +22,7 @@ import com.i2i.model.User;
  * @author Manikandan
  *
  */
+@Repository
 public class PurchaseOrderDao extends GenericDao {	
 	
 	/**
@@ -85,5 +88,35 @@ public class PurchaseOrderDao extends GenericDao {
         }    
     
 	}
-
+	
+	
+	public void updatePurchaseOrder(PurchaseOrder purchaseOrder) throws UserApplicationException {
+		Session session = checkSessionFactory();
+        Transaction transaction = null;
+        try {            
+            transaction = session.beginTransaction();            
+	        session.update(purchaseOrder);  
+            transaction.commit();          
+        } catch (HibernateException e) {            
+            throw new UserApplicationException("could not update for this Purchase Id "+purchaseOrder.getId(), e);
+        } finally {
+            closeSession(session);
+        }
+	}
+	
+	
+	public void addPurchaseOrder(PurchaseOrder purchaseOrder) throws UserApplicationException {
+		Session session = checkSessionFactory();
+    	Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(purchaseOrder); 
+            transaction.commit();
+        } catch (HibernateException e) {
+            throw new UserApplicationException("unable to Add for this Purchase Id "+purchaseOrder.getId(),e);
+        } finally {
+            closeSession(session);
+        }      	
+	}    
+	
 }

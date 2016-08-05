@@ -12,6 +12,7 @@ import com.i2i.dao.CartDao;
 import com.i2i.exception.UserApplicationException;
 import com.i2i.model.Cart;
 import com.i2i.model.Disc;
+import com.i2i.model.PurchaseOrder;
 
 /**
  * <h1>UserService</h1>
@@ -76,6 +77,10 @@ public class CartService {
     public void addToCart(Disc disc, Cart cart) throws UserApplicationException {
     	cartDao.insertDiscToCart(disc ,cart);
     } 
+    
+    public void updateCart(Cart cart, PurchaseOrder purchaseOrder) throws UserApplicationException {
+    	cartDao.updateCartByPurchaseOrder(cart, purchaseOrder);
+    }
     
 
 

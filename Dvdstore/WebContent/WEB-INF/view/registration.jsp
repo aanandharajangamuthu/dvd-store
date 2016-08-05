@@ -20,19 +20,6 @@ function validateForm() {
 }   
 </script>
  <body bgcolor="black">
- <div id="shell">
-  <div id="header"> 
-  <h1 id="logo"><a href="#">Fact</a></h1>
- <i><h2 style="color:green">Be a Fanatic and Admire Everything </h2></i>
- </div>
- <div id="navigation">
-      <ul>              
-        <li><a href="#">IN THEATERS</a></li>
-        <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>
-        <li><a href="userIndex.jsp">Go Back!!!</a>
-      </ul>
-    </div>
-<body>
 <center>
 <br><br><br><br><br><br>
 <div style="color: green;font-size: 30px">Registration Form</div>
@@ -65,7 +52,6 @@ function validateForm() {
 </center>
 </form>
 <br>
-<a href="userList.html" >Click Here to see User List</a>
 </center>
 </body>
 </html>

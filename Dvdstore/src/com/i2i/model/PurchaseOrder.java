@@ -21,6 +21,10 @@ public class PurchaseOrder {
 	    this.status = status;
 	    this.user = user;
     }
+    public PurchaseOrder(Set<Cart> cart,User user) {
+    	this.user = user;
+    	this.cart = cart;
+    }    
 
 	// Getter and Setter	    
     public int getId() {
@@ -64,4 +68,3 @@ public class PurchaseOrder {
 	}	
 	    
 }
-

@@ -13,18 +13,20 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: white;
+    background-color:  #999;
     min-width: 113px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    opacity: .8;
 }
 
 .dropdown-content a {
-    color: green;
+    color: solid green;
     padding: 16px 16px;
     text-decoration: none;
     display: block;
@@ -52,8 +54,7 @@
     margin: 4px 2px;
     cursor: pointer;
     width: 80;
-    height: 40;
-	
+    height: 40;	
 }
 .addCart {
 	background-color:black;
@@ -137,6 +138,7 @@
 	clear:left;
 	padding-top:100px;
 	padding-bottom:10px;
+	cursor: pointer;
 	
 }
 #newNavigation ul {
@@ -169,6 +171,7 @@
 	clear:left;
 	padding-top:0px;
 	padding-bottom:50px;
+	cursor: pointer;
 	
 }
 #sub_newNavigation ul {
@@ -210,8 +213,7 @@
 	display:block;
 	clear:right;
 	border-top:1px dashed #666;
-	border-bottom:1px dashed #666;
-	padding:8px 0;
+	padding:5px 0;
 }
 #sub-navigation ul {
 	list-style:none;
@@ -259,12 +261,12 @@ h1#logo a {
 #content {
 }
 .box {
-	width:980px;
+	width:1000px;
 	border-bottom:1px dashed #413e3e;
 	padding-bottom:21px;
 }
 .box .head {
-	width:980px;
+	width:1000px;
 	padding-top:14px;
 	padding-bottom:11px;
 }
@@ -273,19 +275,24 @@ h1#logo a {
 	display:inline;
 }
 .box .movie {
-	width:152px;
+	width:300px;
 	float:left;
 	padding-right:12px;
 }
+.text{ 
+	width:340px; 
+	height:217px; 
+	background:#FFF; opacity:0; 
+	} 
 .movie-image {
 	float:left;
-	width:152px;
-	height:214px;
+	width:300px;
+	height:300px;
 	position:relative;
 }
 .movie-image img {
-	width:152px;
-	height:214px;
+	width:300px;
+	height:300px;
    -webkit-transform: scale(.8);
 	transform: scale(.8);
 	-webkit-transition: .3s ease-in-out;

@@ -2,6 +2,9 @@ package com.i2i.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.i2i.model.PurchaseOrder;
 import com.i2i.dao.PurchaseOrderDao;
 import com.i2i.exception.UserApplicationException;
@@ -10,8 +13,11 @@ import com.i2i.exception.UserApplicationException;
  * @author Manikandan
  *
  */
-public class PurchaseOrderService {
-	private PurchaseOrderDao purchaseOrderDao = new PurchaseOrderDao();
+@Service
+public class PurchaseOrderService {	
+	
+	@Autowired
+	PurchaseOrderDao purchaseOrderDao;
 	
 	/**
      * <p>
@@ -52,5 +58,12 @@ public class PurchaseOrderService {
     public void removePurchaseOrderById(int purchaseOrderId) throws UserApplicationException  {       
          purchaseOrderDao.deletePurchaseOrderById(purchaseOrderId);       
     }
-
+    
+    public void update(PurchaseOrder purchaseOrder) throws UserApplicationException  {
+    	purchaseOrderDao.updatePurchaseOrder(purchaseOrder);
+    }
+    
+    public void add(PurchaseOrder purchaseOrder) throws UserApplicationException  {
+    	purchaseOrderDao.addPurchaseOrder(purchaseOrder);
+    }
 }

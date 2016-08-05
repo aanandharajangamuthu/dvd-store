@@ -21,6 +21,7 @@
     </div>
 <center>
 <br><br><br><br><br><br>
+    <p style="color:green"> Invalid User mail and Password. Try again by entering valid detail</p>
 <div style="color: green;font-size: 30px">Login Form</div>
 <br><br>
 <form name=myForm id="registerForm" modelAttribute="user" method="post" action="checkUser.html">
@@ -33,7 +34,7 @@
             </tr>
             <tr>
                 <td style="color:white">Password<br><br></td>
-                <td><input required="required" type="password" name="password"/><br><br></td>
+                <td><input type="password" name="password"/><br><br></td>
             </tr>            
                 <tr><td></td><td>
                     <input type="submit" class="button" value="Submit"/>
@@ -51,6 +52,6 @@
 </table>
 </div>
 </center>
-</div>
 </body>
 </html>
+

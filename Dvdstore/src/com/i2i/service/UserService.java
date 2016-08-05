@@ -5,6 +5,9 @@ package com.i2i.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.i2i.model.User;
 import com.i2i.dao.UserDao;
 import com.i2i.exception.UserApplicationException;
@@ -17,8 +20,11 @@ import com.i2i.exception.UserApplicationException;
  * @author Manikandan
  *
  */
+@Service
 public class UserService {
-	private UserDao userDao = new UserDao();	
+	
+	@Autowired
+	UserDao userDao;	
 	
 	/**
      * <p>

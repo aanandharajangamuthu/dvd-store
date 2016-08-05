@@ -13,7 +13,7 @@ public class User {
 	private String email;
 	private String password;
 	private String mobileNumber;
-	private boolean isAdmin;
+	private byte isAdmin;
     private Set<PurchaseOrder> 	purchaseOrders = new HashSet<PurchaseOrder> ();
     
     
@@ -66,11 +66,11 @@ public class User {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public boolean isAdmin() {
+	public byte getIsAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(boolean isAdmin) {
+	public void setIsAdmin(byte isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 

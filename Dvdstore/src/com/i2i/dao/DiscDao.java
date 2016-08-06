@@ -19,12 +19,11 @@ import com.i2i.exception.UserApplicationException;
 
 /**
  * 
- * <p>DiscDao --- Subclass of GenericDao
+ * <p>
+ * DiscDao --- Subclass of GenericDao
  * Manipulates the discs in the database
  * </p>
- * @author Anandharaj Angamuthu
- * @version 1.0
- * @modified 2016-07-26
+ * @author Anandharaj Angamuthu 
  */
 @Repository
 public class DiscDao extends GenericDao {
@@ -182,6 +181,13 @@ public class DiscDao extends GenericDao {
       }
     }
     
+    /**
+     * This method used to update disc object by stock element with hibernate operation 
+     * @param disc object should not be null
+     * @param stock should be integer
+     * @throws UserApplicationException
+     *         If there is error in modified disc by stock
+     */
     public void updateStock(Disc disc, int stock) throws UserApplicationException {
     	Session session = checkSessionFactory();
     	Transaction transaction = null;

@@ -18,6 +18,10 @@ import com.i2i.dao.DiscDao;
 import com.i2i.exception.UserApplicationException;
 
 /**
+ * <p>
+ * This Service used to processing the input and returns the output. 
+ * </p>
+ *
  * @author Anandharaj Angamuthu
  *
  */
@@ -141,9 +145,9 @@ public class DiscService {
      * </p>
      *
      * @param discs
-     *        Set of discs selected for the category
+     *        Set of discs allocate for the category
      * @param category
-     *        where the set discs belongs to  
+     *        where the category belongs to discs
      */
     public void categoryForDiscs(Set<Disc> discs, Category category) throws UserApplicationException {
         for(Disc disc : discs) {
@@ -153,14 +157,13 @@ public class DiscService {
     
     /**
      * <p>
-     * Allocates category to a set of discs
-     * Using allocateCategoryToDiscs method
+     * Allocates language to a set of discs
      * </p>
      *
      * @param discs
-     *        Set of discs selected for the category
-     * @param category
-     *        where the set discs belongs to  
+     *        Set of discs to be allocate
+     * @param language
+     *        where the language belongs to discs
      */
     public void languageForDiscs(Set<Disc> discs, Language language) throws UserApplicationException {
         for(Disc disc : discs) {
@@ -168,6 +171,15 @@ public class DiscService {
         }
     }
     
+    /**
+     * <p>
+     * This method used to update disc object by stock element
+     * </p>     
+     * @param disc object should not be null
+     * @param stock should be integer
+     * @throws UserApplicationException
+     *         If there is error in updating disc by stock.  
+     */    
     public void updateByDiscStock(Disc disc, int stock) throws UserApplicationException {
        	discDao.updateStock(disc,stock);
        }

@@ -13,6 +13,10 @@ import com.i2i.dao.LanguageDao;
 import com.i2i.exception.UserApplicationException;
 
 /**
+ * <h1>LanguageService</h1>
+ * <p>
+ * This Service used to processing the input and returns the output. 
+ * </p>
  * @author Anandharaj Angamuthu
  *
  */

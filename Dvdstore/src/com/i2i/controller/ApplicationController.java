@@ -353,14 +353,8 @@ public class ApplicationController {
 		}
 		return new ModelAndView("categoryDetails", model);
     }
+
 	
-
-	/*@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public ModelAndView welcome() {
-		return new ModelAndView("index");
-	}*/
-
-	// Language Controller
 	
 	@RequestMapping("/registerLanguage")
 	public ModelAndView getRegisterForm(@ModelAttribute("language") Language language,
@@ -394,36 +388,54 @@ public class ApplicationController {
 		}
 		return new ModelAndView("languageDetails", model);
     }
-	
 
-	/*@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public ModelAndView welcome() {
-		return new ModelAndView("index");
-	}*/
 
 	// Disc Controller		
 	
+	
+	/**
+	 * <p>
+     * This method used to redirect to discRegister page.    
+     * <p>
+	 * @param disc should not be null
+	 * @param result
+	 * @return ModelAndView 
+	 *          It returns discRegister page.
+	 */
 	@RequestMapping("/registerDisc")
 	public ModelAndView getRegisterForm(@ModelAttribute("disc") Disc disc,
-			BindingResult result) {
-		System.out.println("Register Form");
+			BindingResult result) {		
 		return new ModelAndView("discRegister");
-	}
+	}	
 	
+	
+	/**
+	 * <p>
+     * This method used to store new disc.Disc object get from the modelAttribute. 
+     * <p>
+	 * @param disc object should not be null.
+	 * @param result
+	 * @return ModelAndView
+	 *         returns redirect to discList.
+	 */
 	@RequestMapping("/saveDisc")
 	public ModelAndView saveUserData(@ModelAttribute("disc") Disc disc,
 			BindingResult result) {
 		try {
 			discService.createDisc(disc);
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			e.getMessage();
-		}
-		System.out.println("Save Disc Data");
+			System.out.println(e);			
+		}		
 		return new ModelAndView("redirect:/discList.html");
-	}
-
+	}	
+	
+	/**
+	 *  <p>
+     * This method used to get all discs and shows in disDetails page. 
+     * <p> 
+	 * @return ModelAndView
+	 *          returns discDetails page. 
+	 */
 	@RequestMapping("/discList")
 	public ModelAndView getdiscList() {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -431,19 +443,37 @@ public class ApplicationController {
 			System.out.println("Entering into disc List");
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("discDetails", model);
     }
 	
+	
+	
+	/**
+	 * <p>
+     * This method used to shows the page for search disc . 
+     * <p>
+	 * @param disc object should not be null
+	 * @param result
+	 * @return ModelAndView 
+	 *         returns to findDisc page.
+	 */
 	@RequestMapping("/showDisc")
 	public ModelAndView searchDisc(@ModelAttribute("disc") Disc disc,
 			BindingResult result) { 	
 		return new ModelAndView("findDisc");
-	}
+	}		
 	
-	
+	/**
+	 * <p>
+     * This method used to retrieve the particular disc from discList with the use of disc object. 
+     * <p>
+	 * @param disc object should not be null
+	 * @param result
+	 * @return ModelAndView
+	 *         returns to viewDisc page
+	 */
 	@RequestMapping("/discFind")
 	public ModelAndView retrieveDisc(@ModelAttribute("disc") Disc disc,
 			BindingResult result) {
@@ -451,12 +481,19 @@ public class ApplicationController {
 		try {
 			model.put("disc",discService.findByDiscId(disc.getId()));
 		} catch (UserApplicationException e) {			
-			e.getMessage();
+			System.out.println(e);	
 		}
 		System.out.println("Save Disc Data");
 		return new ModelAndView("viewDisc",model);
-	}
-		
+	}	
+	
+	/**
+	 * <p>
+     * This method used to show all movies. 
+     * <p>
+	 * @return ModelAndView
+	 *         returns model to movies page.
+	 */
 	@RequestMapping("/movieList")
 	public ModelAndView getMovies() {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -464,209 +501,285 @@ public class ApplicationController {
 			System.out.println("Entering into Movie List");
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("movies", model);
-    }
+    }	
 	
+	/**
+	 * <p>
+     * This method used to show only tamil movies from movies list. 
+     * <p>
+	 * @return ModelAndView
+	 *         returns model to tamil page.
+	 */
 	@RequestMapping("/tamilMovies")
 	public ModelAndView getTamilMovies() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("tamil", model);
     }
 	
+	
+	/**
+	 * <p>
+     * This method used to show only english movies from movies list. 
+     * <p> 
+	 * @return ModelAndView
+	 *         returns model to english page.
+	 */
 	@RequestMapping("/englishMovies")
 	public ModelAndView getEnglishMovies() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("english", model);
     }
-
+	
+	/**
+	 * <p>
+     * This method used to show only hindi movies from movies list. 
+     * <p> 
+	 * @return ModelAndView
+	 *          returns model to hindi page. 
+	 */
 	@RequestMapping("/hindiMovies")
 	public ModelAndView getHindiMovies() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("hindi", model);
-    }
+    }	
 	
+	/**
+	 * <p>
+     * This method used to show songs list. 
+     * <p>
+	 * @return ModelAndView
+	 *         returns model to songs page. 
+	 */
 	@RequestMapping("/songList")
 	public ModelAndView getSongs() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
-		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (UserApplicationException e) {			
+			System.out.println(e);	
 		}
 		return new ModelAndView("songs", model);
     }
 	
+	
+	/**
+	 * <p>
+     * This method used to list only tamil songs list. 
+     * <p>
+	 * @return ModelAndView
+	 *         returns model to tamilSong page. 
+	 */
 	@RequestMapping("/tamilSongs")
 	public ModelAndView getTamilSongs() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("tamilSong", model);
     }
 	
+	/**
+	 * <p>
+     * This method used to list only tamil songs list. 
+     * <p> 
+	 * @return ModelAndView 
+	 *         returns model to hindiSong page. 
+	 */
 	@RequestMapping("/hindiSongs")
 	public ModelAndView getHindiSongs() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("hindiSong", model);
-    }
+    }	
 
+	/**
+     * <p>
+     * This method used to list only english songs list. 
+     * <p>     
+	 * @return ModelAndView
+	 *         returns model to englishSong page.
+	 */
 	@RequestMapping("/englishSongs")
 	public ModelAndView getEnglishSongs() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("englishSong", model);
-    }
-	
+    }	
+
+	/**
+	 * <p>
+     * This method used to list all langauge shows. 
+     * <p> 
+	 * @return ModelAndView 
+	 *         returns model to shows page.
+	 */
 	@RequestMapping("/showList")
 	public ModelAndView getShows() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("shows", model);
     }
 	
+	/**
+	 * <p>
+     * This method used to list the tamil tv shows. 
+     * <p> 
+	 * @return ModelAndView 
+	 *         returns model to tamilTvShows page.
+	 */
 	@RequestMapping("/tamilShows")
 	public ModelAndView getTamilShows() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
-			model.put("disc", discService.discList());	
-			 
+			model.put("disc", discService.discList());			 
 		}catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("tamilTvShows", model);
     }
 	
+	
+	/**
+	 * <p>
+     * This method used to list the english shows. 
+     * <p>
+	 * @return ModelAndView 
+	 *         returns model to english_Shows page.
+	 */
 	@RequestMapping("/englishShows")
 	public ModelAndView getEnglishShows() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
-			model.put("disc", discService.discList());	
-			 
+			model.put("disc", discService.discList());			 
 		}catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("english_Shows", model);
-    }
-
+    }  
+	
+	/**
+	 * <p>
+     * This method used to list the hindi shows. 
+     * <p>
+	 * @return ModelAndView
+	 *         returns model to hindi_Shows page.
+	 */
 	@RequestMapping("/hindiShows")
 	public ModelAndView getHindiShows() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
-			model.put("disc", discService.discList());	
-			 
+			model.put("disc", discService.discList());			 
 		}catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);	
 		}
 		return new ModelAndView("hindi_Shows", model);
-    }
-
-	/*public List<Disc> getAllDisc(){
-		List<Disc> discs = new ArrayList<Disc>();
-		try {
-			discs = discService.discList();
-		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return discs;				
-	}*/
-
-
+    }	
 	
+	/**
+	 * <p>
+     * This method used to redirect to languageAndDisc page for assign language to disc. 
+     * <p>
+	 * @return ModelAndView
+	 *         returns to languageAndDisc page.
+	 */
 	@RequestMapping("/assignLanguage")
 	public ModelAndView showLanguage() { 	
 		return new ModelAndView("languageAndDisc");
-	}
-
+	}	
 	
+	/**
+	 * <p>
+     * This method used to assign language to disc. 
+     * <p>
+	 * @param discId should be integer,Used to get Disc object.
+	 * @param languageId should be integer, Used to get Language object
+	 * @return ModelAndView
+	 *         returns model to languageAndDisc page.
+	 */
 	@RequestMapping(value="/allocate",method=RequestMethod.POST)
 	public ModelAndView allocateDisc(@RequestParam("discId") int discId, 
 			            @RequestParam("languageId") int languageId) {
 		Disc disc;
 		Language language;
-		try {
-		//Map<String, Object> model = new HashMap<String, Object>();
+		try {		
 		    disc = discService.findByDiscId(discId);
 		    language = languageService.findByLanguageId(languageId);
 		    Set<Disc> discs = new HashSet<Disc>();
 		    discs.add(disc);
 			discService.languageForDiscs(discs,language);
-		} catch (UserApplicationException e) {
-			
-			e.getMessage();
-		}
-		System.out.println("Save Disc Data");
+		} catch (UserApplicationException e) {		
+			System.out.println(e);			
+		}		
 		return new ModelAndView("assigned");
 	}
 	
+	/**
+	 * <p>
+     * This method used to redirect categoryAndDisc page for assign category to disc. 
+     * <p> 
+	 * @return ModelAndView
+	 *         returns to categoryAndDisc page.
+	 */
 	@RequestMapping("/assignCategory")
 	public ModelAndView showCategory() { 	
 		return new ModelAndView("categoryAndDisc");
-	}
-
+	}		
 	
+	/**
+	 * <p>
+     * This method used to assign category to Disc and shows assigned success message page. 
+     * <p> 
+	 * @param discId should be integer,Used to get Disc object.
+	 * @param categoryId should be integer, Used to get Category object
+	 * @return ModelAndView 
+	 *         returns to assigned page.
+	 */
 	@RequestMapping(value="/allocateCategory",method=RequestMethod.POST)
 	public ModelAndView allocateCategory(@RequestParam("discId") int discId, 
 			            @RequestParam("categoryId") int categoryId) {
 		Disc disc;
 		Category category;
 		try {
-		//Map<String, Object> model = new HashMap<String, Object>();
 		    disc = discService.findByDiscId(discId);
 		    category = categoryService.findByCategoryId(categoryId);
 		    Set<Disc> discs = new HashSet<Disc>();
 		    discs.add(disc);
 			discService.categoryForDiscs(discs,category);
 		} catch (UserApplicationException e) {
-			
-			e.getMessage();
-		}
-		System.out.println("Save Disc Data");
+			System.out.println(e);		
+		}		
 		return new ModelAndView("assigned");
 	}
 		

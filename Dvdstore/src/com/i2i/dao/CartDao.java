@@ -26,7 +26,15 @@ import com.i2i.model.User;
 @Repository
 public class CartDao extends GenericDao {
 	
-	
+	/**
+     * <p>
+     * This  method used to insert the cart details to the database
+     * </p>
+     * @param cart 
+     *        cart object to be inserted,and it contains cart details     
+     * @throws UserApplicationException
+     *        If there is error in inserting user through session object.     
+     */		
 	
 	public void insertCart(Cart cart) throws UserApplicationException {
 		Session session = checkSessionFactory();
@@ -105,8 +113,17 @@ public class CartDao extends GenericDao {
         }    
     
 	}
-	
-	
+	/**
+     * <p>
+     * This method used to insert disc into cart & update the cart details in  database
+     * </p>
+     * @param cart
+     *        which can be the cart object to be updated
+     * @param disc
+     *        which can be the disc object for the cart
+     * @throws UserApplicationException
+     *         If there is error in deleting Cart object.    
+     */		
 	public void insertDiscToCart(Disc disc, Cart cart) throws UserApplicationException {
 		Session session = checkSessionFactory();
         Transaction transaction = null;          
@@ -121,6 +138,18 @@ public class CartDao extends GenericDao {
             closeSession(session);
          } 
 	}
+	
+	/**
+     * <p>
+     * This method used to insert purchaseOrder into cart & update the cart details in  database
+     * </p>
+     * @param cart
+     *        which can be the cart object to be updated
+     * @param purchaseOrder
+     *        which can be the purchaseOrder object for the cart
+     * @throws UserApplicationException
+     *         If there is error in deleting Cart object.    
+     */		
 	
 	public void updateCartByPurchaseOrder(Cart cart,PurchaseOrder purchaseOrder) throws UserApplicationException {
 		System.out.println(cart);

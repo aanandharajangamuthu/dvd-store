@@ -8,8 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.List;
-import java.util.ArrayList;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,8 +35,11 @@ import com.i2i.exception.UserApplicationException;
 
 
 /**
- * @author ideas2it
- *
+ * <p> Application controller - Manipulates the Details of DvdStore
+ * </p>
+ * @author Anandharaj Angamuthu
+ * 
+ * @modified 2016-08-06 
  */
 @Controller
 public class ApplicationController {
@@ -60,17 +62,29 @@ public class ApplicationController {
 	@Autowired
 	LanguageService languageService;
 	
-	private static List<Disc> discs = new ArrayList<Disc> ();
-	
-	private User currentUser = null;
-	
+	private User currentUser = null;	
+	static double totalAmount ;
+	private static Set<Cart> carts = new HashSet<Cart> ();
+	PurchaseOrder purchaseOrder = null;
+
+	/**
+	 * <p>Redirects to the register Page</p>
+	 * @param user
+	 * @param result
+	 * @return registration page
+	 */
 	@RequestMapping("/register")
 	public ModelAndView getRegister(@ModelAttribute("user") User user,
 			BindingResult result) {
 		
 		return new ModelAndView("registration");
 	}
-	
+	/**
+	 * <p> Redirects the user to the userIndex Page after getting login</p> 
+	 * @param user
+	 * @param result
+	 * @return userIndex Page
+	 */
 	@RequestMapping("/userDetail")
 	public ModelAndView getUserDetail(@ModelAttribute("user") User user,
 			BindingResult result) {
@@ -78,7 +92,12 @@ public class ApplicationController {
 		model.put("currentUser", currentUser);
 		return new ModelAndView("userIndex",model);
 	}
-	
+	/**
+	 * </p> Saves the user and redirects to the home page</p> 
+	 * @param user
+	 * @param result
+	 * @return home page
+	 */
 	@RequestMapping("/saveUser")
 	public ModelAndView saveUserData(@ModelAttribute("user") User user,
 			BindingResult result) {
@@ -92,7 +111,11 @@ public class ApplicationController {
 		
 		return new ModelAndView("home");
 	}
-	
+	/**
+	 * <P> Retrieves the list of registered Users</p>
+	 * @return userDetails page
+	 *         contains list of users with details
+	 */
 	@RequestMapping("/userList")
 	public ModelAndView getUserList() {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -103,7 +126,13 @@ public class ApplicationController {
 		}
 		return new ModelAndView("UserDetails", model);
 	}
-	
+	/**
+	 * </p> Directs to userHome page </p>
+	 * @param user
+	 * @param result
+	 * @return userHome page
+	 *         which can be the home page of the cuurentUser
+	 */
 	@RequestMapping("/user_home")
 	public ModelAndView userHomePage(@ModelAttribute("user") User user,
 			BindingResult result) {
@@ -111,14 +140,32 @@ public class ApplicationController {
 		model.put("currentUser", currentUser);
 		return new ModelAndView("userHome",model);
 	}
-	
+	/**
+	 * <p> Directs to login page</p>
+	 * @param user
+	 * @param result
+	 * @return login Page
+	 *         Asks details for getting logged in
+	 */
 	@RequestMapping("/login")
 	public ModelAndView getLogin(@ModelAttribute("user") User user,
 			BindingResult result) {	
 		System.out.println("Entering into login page");
 		return new ModelAndView("login");
 	}
-	
+	/**
+	 * </p>Checks whether the User is an Admin or Normal User</p> 
+	 * @param user
+	 *        user object
+	 * @param result
+	 * @return index page 
+	 *         when the user satisfies the admin condition   
+	 * @return UserHoem page
+	 *         when the user satisfies the normal user condition
+	 * @return tryAgain page
+	 *         when both condition fails
+	 * 
+	 */
 	@RequestMapping("/checkUser")
 	public ModelAndView checkAdmin(@ModelAttribute("user") User user,
 			BindingResult result) {
@@ -139,15 +186,20 @@ public class ApplicationController {
 		    		System.out.println("entering into purchase page");
 		    		return new ModelAndView("redirect:/purchaseDisc.html");
 		    	}
-		    	//loginUser.getName();
-		    	//return new ModelAndView("userHome",model);
+		    	
 		    }
 		} catch(UserApplicationException e) {
 		    System.out.println("Exception occur");		
 		}		
 		return new ModelAndView("tryAgain");
 	}
-	
+	/**
+	 * <p> Redirects to home page & clears the cart details when the user gets sign out</p>
+	 * @param user
+	 * @param result
+	 * @return home page
+	 *         Starting page of the DvdStore 
+	 */
 	@RequestMapping("/signOut")
 	public ModelAndView logOut(@ModelAttribute("user") User user,
 			BindingResult result) {	
@@ -170,10 +222,17 @@ public class ApplicationController {
 	
 	
 // Cart Controller
-		
 	
-	static double totalAmount ;	
-	private static Set<Cart> carts = new HashSet<Cart> ();	
+	/**
+	 * <Adds the disc details into the cart, calculates the total price & reduces the quantity of disc</p>
+	 * @param id
+	 *        by which the cart to be inserted into the database
+	 * @param stock
+	 *        which is the available quantity of disc
+	 * @param quantity
+	 *        which can be the quantity of disc required by the user
+	 * @return Cart page
+	 */
 	@RequestMapping(value = "addProduct",method = RequestMethod.POST)
 	public ModelAndView getCart(@RequestParam("id") int id , @RequestParam("stock") int stock, 
 			@RequestParam("quantity") int quantity) {
@@ -195,6 +254,14 @@ public class ApplicationController {
 		return new ModelAndView("Cart",model);
 	}
 	
+	/**
+	 * <p> Deletes the cart based on user need & restores the available stock of disc</p>
+	 * @param id
+	 * @param discId
+	 * @param quantity
+	 * @return Cart page
+	 *         contains the cart details
+	 */
 	@RequestMapping("/deleteCart")
 	public ModelAndView deleteCart(@RequestParam("id") int id, @RequestParam("discId") int discId ,@RequestParam("quantity") int quantity) {
 		Map<String, Object> model = new HashMap<String, Object>();	
@@ -224,7 +291,11 @@ public class ApplicationController {
 		return new ModelAndView("Cart",model);
 	}	
 
-
+   /**
+    * <p> Retrieves the list of carts</p> 
+    * @return Cart page
+    *         contains the cart details
+    */
 	@RequestMapping("/cartList")
 	public ModelAndView cartList() {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -237,7 +308,13 @@ public class ApplicationController {
 		return new ModelAndView("Cart", model);
 	}
 	
-	
+	/**
+	 * <p> Displays the particular disc detail chosen by the user to buy</p>
+	 * @param id
+	 *        which can be the id of the disc chosen by the user
+	 * @return buyDisc Page
+	 *        contains disc details chosen by the user
+	 */
 	@RequestMapping("/buyDisc")
 	public ModelAndView buyDisc(@RequestParam("id") int id ) {
 		Map<String, Object> model = new HashMap<String, Object>();		
@@ -251,7 +328,14 @@ public class ApplicationController {
 	}
 	
 	
-	
+	/**
+	 * <p> Redirects to login page when the user tries to purchase without login</P>
+	 * @param user
+	 *        User object 
+	 * @param result
+	 * @return login page
+	 *         contains the login details
+	 */
 	@RequestMapping("/purchase")
 	public ModelAndView getPurchase(@ModelAttribute("user") User user, BindingResult result) {
 		if(currentUser != null) {
@@ -263,7 +347,16 @@ public class ApplicationController {
 	    }
 	}
 	
-    PurchaseOrder purchaseOrder = null;
+	/**
+	 * <p> Redirects to puchase login or purchase order page based on login status of user</p>
+	 * @param user
+	 *        User object
+	 * @param result
+	 * @return purchaseOrder page
+	 *         when the user already logged in & chosen the disc to purchase
+	 * @return purchaselogin page
+	 *         when the user not logged in but chosen the disc to purchase
+	 */
 	@RequestMapping("/purchaseDisc")
 	public ModelAndView checkUser(@ModelAttribute("user") User user, BindingResult result) {
 		System.out.println("PurchaseDisc");
@@ -301,7 +394,14 @@ public class ApplicationController {
 		return new ModelAndView("PurchaseLogin");
 	}	
 	
-	
+	/**
+	 * <p>Redirects to Success page when the user confirms the purchase order, clears the cart
+	 * details added by the user & subtracts the required quantity of disc from the available quantity
+	 * of disc
+	 * </P>
+	 * @return Success page
+	 *         shows Success message
+	 */
 	@RequestMapping("/success")
 	public ModelAndView conformPurchase() {		
 		 System.out.println("Sucess");	
@@ -319,8 +419,18 @@ public class ApplicationController {
 		}
 		return new ModelAndView("Success",model);
 	}
+	
+	
 // Category Controller
-		
+	
+	/**
+	 * <p> Registers the new category by the admin</p> 
+	 * @param category
+	 *        Category object to be added into the database
+	 * @param result
+	 * @return categoryRegister page
+	 *         Asks for category to be registered
+	 */
 	@RequestMapping("/registerCategory")
 	public ModelAndView getRegisterForm(@ModelAttribute("category") Category category,
 			BindingResult result) {
@@ -328,6 +438,14 @@ public class ApplicationController {
 		return new ModelAndView("categoryRegister");
 	}
 	
+	/**
+	 * <p> Saves the category details into the database & redirects to categoryDetails Page
+	 * @param category
+	 *        Category object
+	 * @param result
+	 * @return CategoryDetails Page 
+	 *         shows the list of categories
+	 */
 	@RequestMapping("/saveCategory")
 	public ModelAndView saveUserData(@ModelAttribute("category") Category category,
 			BindingResult result) {
@@ -342,6 +460,11 @@ public class ApplicationController {
 		return new ModelAndView("redirect:/categoryList.html");
 	}
 
+	/**
+	 * <p>Retrieves the list of categories from the database & directs to categoryDetails page</p> 
+	 * @return categoryDetails Page
+	 *         shows the list of categories
+	 */
 	@RequestMapping("/categoryList")
 	public ModelAndView getCategoryList() {
 		Map<String, Object> model = new HashMap<String, Object>();
@@ -355,7 +478,15 @@ public class ApplicationController {
     }
 
 	
-	
+	// Language Controller
+	/**
+	 * <p> Registers the new language by the admin</p> 
+	 * @param language
+	 *        Language object to be added into the database
+	 * @param result
+	 * @return languageRegister page
+	 *         ask for language to be registered
+	 */	
 	@RequestMapping("/registerLanguage")
 	public ModelAndView getRegisterForm(@ModelAttribute("language") Language language,
 			BindingResult result) {
@@ -363,6 +494,14 @@ public class ApplicationController {
 		return new ModelAndView("languageRegister");
 	}
 	
+	/**
+	 * <p> Saves the language details into the database & redirects to categoryDetails Page
+	 * @param language
+	 *        Language object
+	 * @param result
+	 * @return LangaueDetails Page
+	 *         shows list of languages 
+	 */
 	@RequestMapping("/saveLanguage")
 	public ModelAndView saveUserData(@ModelAttribute("language") Language language,
 			BindingResult result) {
@@ -377,6 +516,11 @@ public class ApplicationController {
 		return new ModelAndView("redirect:/languageList.html");
 	}
 
+	/**
+	 * <p>Retrieves the list of languages from the database & directs to categoryDetails page</p> 
+	 * @return languageDetails Page
+	 *         shows list of languages
+	 */
 	@RequestMapping("/languageList")
 	public ModelAndView getLanguageList() {
 		Map<String, Object> model = new HashMap<String, Object>();

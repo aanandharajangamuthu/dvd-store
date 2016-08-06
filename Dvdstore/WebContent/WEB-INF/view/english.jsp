@@ -10,31 +10,31 @@
 <link rel="stylesheet" type="text/css" href="dvdStyle.css">
 </head>
 <body>
-<div id="shell">
-<div align="center" style="color: green;font-size: 30px">Available English Movies</div>
-<br><br>
-<c:if test="${!empty disc}">
-<c:forEach items="${disc}" var="disc">
-<form:form id="discId" method="post" action="buyDisc.html">
-<c:if test="${disc.category.getId() == 1 && disc.language.getId() == 3 }">
-<div class="upleft">
-<img src="<c:out value="${disc.imageUrl}"/>" alt="image" border=3 height=200 width=200></img>
-</div>
-<div style="color:green;font-size:120%">
-<p><input type="hidden" id="id" name="id" value="${disc.id}"/></p>
-<i><strong><p> Movie: <c:out value="${disc.name}"/></p><strong></i>
-</div>
-<div style="color:white">
-<p> Director: <c:out value="${disc.directorName}"/><p>
-<p> Actor: <c:out value="${disc.actorName}"/></p>
-<p> Price: <c:out value="${disc.price}"/></p>
-<p> Stock: <c:out value="${disc.stock}"/></p>
-<input type="submit" class="buy" value="Buy"/>
-</div>
-</c:if>
-</form:form>
-</c:forEach>
-</c:if>
-</div>
+    <div id="shell">
+    <div align="center" style="color: green;font-size: 30px">Available English Movies</div>
+    <br><br>
+    <c:if test="${!empty disc}">
+    <c:forEach items="${disc}" var="disc">
+        <form:form id="discId" method="post" action="buyDisc.html">
+            <c:if test="${disc.category.getId() == 1 && disc.language.getId() == 3 }">
+            <div class="upleft">
+                <img src="<c:out value="${disc.imageUrl}"/>" alt="image" border=3 height=200 width=200></img>
+            </div>
+            <div style="color:green;font-size:120%">
+                <p><input type="hidden" id="id" name="id" value="${disc.id}"/></p>
+                <i><strong><p> Movie: <c:out value="${disc.name}"/></p><strong></i>
+            </div>
+            <div style="color:white">
+                <p> Director: <c:out value="${disc.directorName}"/><p> 
+                <p> Actor: <c:out value="${disc.actorName}"/></p>
+                <p> Price: <c:out value="${disc.price}"/></p>
+                <p> Stock: <c:out value="${disc.stock}"/></p>
+                <input type="submit" class="buy" value="Buy"/>
+            </div>
+            </c:if>
+        </form:form>
+    </c:forEach>
+    </c:if>
+    </div>
 </body>
 </html>

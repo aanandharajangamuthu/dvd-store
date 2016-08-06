@@ -51,7 +51,7 @@ public class CategoryService {
      * Using listOfCategories method
      * </p>
      *
-     * @return categoryDao.listOfCategories()
+     * @return categories
      *         List of categories available in the database
      */
     public List<Category> categoryList() throws UserApplicationException{
@@ -66,8 +66,8 @@ public class CategoryService {
      *
      * @param id
      *        which is the unique id of the category
-     * @return categoryDao.findCategoryById(id)
-     *         category
+     * @return category
+     *         category object retrieved by that id
      * @throws UserApplicationException
      *         if there is error in the given input like IllegalArgumentException
      */
@@ -82,7 +82,7 @@ public class CategoryService {
      * </p>
      *
      * @param id
-     *        which is the unique id of the category
+     *        which is the unique id of the category to be removed
      * @throws UserApplicationException
      *         if there is error in the given input like IllegalArgumentException
      */
@@ -99,7 +99,7 @@ public class CategoryService {
      * @param id
      *        which is the unique id of the category
      * @param name
-     *        which will be the new name of the category
+     *        which will be the new name for the category
      * @throws ApplicaionException
      *         if there is any error in the given input or error while updating into databse  
      */  

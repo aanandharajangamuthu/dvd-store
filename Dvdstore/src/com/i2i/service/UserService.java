@@ -62,9 +62,9 @@ public class UserService {
      * This method used to view particular user by userId. 
      * </p>
      * @param userId
-     *        Used to find Project,and it should be type of int
-     * @return Project 
-     *         returns the Project to ApplicationController class.
+     *        Used to find User,and it should be type of int
+     * @return user
+     *         returns the user object to ApplicationController class.
      * @throws UserApplicationException 
      *         If there is failed or interrupted view user operation.                        
      */	
@@ -111,7 +111,15 @@ public class UserService {
         userDao.updateUser(user);
     }   
     
-    
+    /**
+     * <p>
+     * This method used to find user. 
+     * </p>
+     * @param user
+     *        which can be the user object retrieved from the database       
+     * @throws UserApplicationException 
+     *        If there is failed or interrupted remove user operation.                      
+     */    
     public User findUser(User user) throws UserApplicationException  {
     	return userDao.searchUser(user);
     }

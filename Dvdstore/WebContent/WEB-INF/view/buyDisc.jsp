@@ -15,36 +15,36 @@
          return false;
      }
  }
- </script>
+</script>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Disc Detail</title>
-<link rel="stylesheet" type="text/css" href="dvdStyle.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Disc Detail</title>
+    <link rel="stylesheet" type="text/css" href="dvdStyle.css">
 </head>
 <body>
-<div id="shell">
-<div align="center" style="color: green;font-size: 30px">Buy Disc</div>
-<br><br>
-<c:if test="${!empty BuyDisc}">
-<form:form id="discId" modelAttribute="cart" method="post" onsubmit="return check_qty()" action="addProduct.html">
-<div class="upleft">
-<img src="<c:out value="${BuyDisc.imageUrl}"/>" alt="image" border=3 height=200 width=200></img>
-</div>
-<div style="color:green;font-size:120%">
-<p><input type="hidden" id="id" name="id" value="${BuyDisc.id}"/></p>
-<i><strong><p><c:out value="${BuyDisc.name}"/></p><strong></i>
-</div>
-<div style="color:white">
-<p> Director: <c:out value="${BuyDisc.directorName}"/><p>
-<p> Actor: <c:out value="${BuyDisc.actorName}"/></p>
-<p><input type="hidden" id="stock" name="stock" value="${BuyDisc.stock}"/>
-<p> Stock: <c:out value="${BuyDisc.stock}"/></p>
-<p> Price: <c:out value="${BuyDisc.price}"/></p>
-<p> quantity: <input required="required" type="text" class="quantity" id="quantity" name="quantity"/><p>
-<p><input type="submit" class="addCart" value="Add to Cart"/><p>
-</div>
-</form:form>
-</c:if>
-</div>
+    <div id="shell">
+        <div align="center" style="color: green;font-size: 30px">Buy Disc</div>
+        <br><br>
+        <c:if test="${!empty BuyDisc}">
+            <form:form id="discId" modelAttribute="cart" method="post" onsubmit="return check_qty()" action="addProduct.html">
+            <div class="upleft">
+                <img src="<c:out value="${BuyDisc.imageUrl}"/>" alt="image" border=3 height=200 width=200></img>
+            </div>
+            <div style="color:green;font-size:120%">
+                <p><input type="hidden" id="id" name="id" value="${BuyDisc.id}"/></p>
+                <i><strong><p><c:out value="${BuyDisc.name}"/></p><strong></i>
+            </div>
+            <div style="color:white">
+                <p> Director: <c:out value="${BuyDisc.directorName}"/><p>
+                <p> Actor: <c:out value="${BuyDisc.actorName}"/></p>
+                <p><input type="hidden" id="stock" name="stock" value="${BuyDisc.stock}"/>
+                <p> Stock: <c:out value="${BuyDisc.stock}"/></p>
+                <p> Price: <c:out value="${BuyDisc.price}"/></p>
+                <p> quantity: <input required="required" type="text" class="quantity" id="quantity" name="quantity"/><p>
+                <p><input type="submit" class="addCart" value="Add to Cart"/><p>
+            </div>
+            </form:form>
+        </c:if>
+    </div>
 </body>
 </html>

@@ -74,10 +74,32 @@ public class CartService {
     	cartDao.deleteCartById(cartId);       
     }
     
+	/**
+     * <p>
+     * This method used to update the cart by seeting disc into it.
+     * </p>
+     * @param cart
+     *        which can be the cart object to be updated
+     * @param disc
+     *        which can be the disc object for the cart
+     * @throws UserApplicationException
+     *         If there is error in deleting Cart object.    
+     */  
     public void addToCart(Disc disc, Cart cart) throws UserApplicationException {
     	cartDao.insertDiscToCart(disc ,cart);
     } 
     
+	/**
+     * <p>
+     * This method used to update the cart by setting purchaseOrder into it.
+     * </p>
+     * @param cart
+     *        which can be the cart object to be updated
+     * @param purchaseOrder
+     *        which can be the purchaseOrder object for the cart
+     * @throws UserApplicationException
+     *         If there is error in deleting Cart object.    
+     */		    
     public void updateCart(Cart cart, PurchaseOrder purchaseOrder) throws UserApplicationException {
     	cartDao.updateCartByPurchaseOrder(cart, purchaseOrder);
     }

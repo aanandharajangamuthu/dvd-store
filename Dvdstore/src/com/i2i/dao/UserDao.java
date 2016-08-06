@@ -134,7 +134,16 @@ public class UserDao extends GenericDao {
             closeSession(session);
         }
 	}
-	
+
+	/**
+     * <p>
+     * This method used to get the User object by checking its email & password attribute from the database.
+     * </p>
+     * @param user
+     *        User object to be retrieved.
+     * @throws ApplicationException
+     *     If there is error in updating User object by session object.    
+     */	
 	public User searchUser(User user) throws UserApplicationException {
 	       Session session = checkSessionFactory();
 	       Transaction transaction = null;

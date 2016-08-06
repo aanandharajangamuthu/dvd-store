@@ -8,7 +8,7 @@
  function check_qty() {
      var requiredQuantity = Number(document.getElementById('quantity').value);
      var availableQuantity = Number(document.getElementById('stock').value);
-     if(requiredQuantity < availableQuantity) {
+     if(requiredQuantity <= availableQuantity) {
     	 return true;
      } else {
     	 alert("Quantity exceeds. Available Quantity: "+availableQuantity);

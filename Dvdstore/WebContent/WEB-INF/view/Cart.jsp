@@ -12,7 +12,7 @@
 <body>
     <center>
         <br><br><br>
-            <p style="color:white"><c:out value="${totalAmount}"/></p>
+            <p style="color:white;font-size:25px">Total Amount : <c:out value="${totalAmount}Rs"/></p>
         <br><br><br>
         <div style="color: green;font-size: 30px">Cart Details</div>
     
@@ -25,8 +25,9 @@
 <td>Director</td>
 <td>ImageUrl</td>
 <td>Quantity</td>
-<td>Total Price</td>
-<td><td>
+<td>Total price<td>
+<td>Disc Id</td>
+
 </tr>
 <c:forEach items="${cart}" var="cart">
 <form:form id="cartId" method="post" action="deleteCart.html">
@@ -35,10 +36,12 @@
 <td><c:out value="${cart.disc.getName()}"/></td>
 <td><c:out value="${cart.disc.getDirectorName()}"/></td>
 <td><img src="<c:out value="${cart.disc.getImageUrl()}"/>" alt="image" border=3 height=100 width=100></img></td>
-<td><c:out value="${cart.quantity}"/></td>
+<td><input type="hidden" id="quantity" name="quantity" value="${cart.quantity}"/>${cart.quantity}</td>
 <td><c:out value="${cart.totalPrice}"/></td>
+<td><input type="hidden" id="discId" name="discId" value="${cart.disc.getId()}"/>${cart.disc.getId()}</td>
 <td><input type="submit" value="Delete"></td>
 </tr>
+
 </form:form>
 </c:forEach>
 </table>

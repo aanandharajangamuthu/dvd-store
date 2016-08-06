@@ -17,7 +17,8 @@
  <div id="navigation">
       <ul>              
         <li><a href="#">IN THEATERS</a></li>
-        <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>        
+        <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>   
+        <li><a href="user_home.html">Home</a></li>      
         <li><a href="signOut.html">Sign Out!!!</a></li>
       </ul>
     </div>

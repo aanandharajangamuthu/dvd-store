@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,8 +59,8 @@ public class ApplicationController {
     
 	@Autowired
 	LanguageService languageService;
-
-
+	
+	private static List<Disc> discs = new ArrayList<Disc> ();
 	
 	private User currentUser = null;
 	
@@ -151,6 +153,16 @@ public class ApplicationController {
 			BindingResult result) {	
 		totalAmount = 0;
 		currentUser = null;
+		for(Cart cart : carts) {
+		    Disc disc = cart.getDisc();
+			int stock = disc.getStock() + cart.getQuantity();			 
+			try {
+			    discService.updateByDiscStock(disc,stock);
+			} catch (UserApplicationException e) {
+				System.out.println(e);		
+			} 
+			 
+		}
 		carts.clear();
 		System.out.println("Entering into Log out");
 		return new ModelAndView("home");
@@ -184,12 +196,16 @@ public class ApplicationController {
 	}
 	
 	@RequestMapping("/deleteCart")
-	public ModelAndView getCart(@RequestParam("id") int id) {
+	public ModelAndView deleteCart(@RequestParam("id") int id, @RequestParam("discId") int discId ,@RequestParam("quantity") int quantity) {
 		Map<String, Object> model = new HashMap<String, Object>();	
-		try {			
+		try {	
+			System.out.println(quantity);
+			Disc disc = discService.findByDiscId(discId);			
 			Cart cart = cartService.getCartById(id);	
-			System.out.println("Single Object"+cart);
-			totalAmount = totalAmount - cart.getTotalPrice();
+			System.out.println("Disc "+disc);
+			totalAmount = totalAmount - cart.getTotalPrice();			
+			int stock = disc.getStock() + quantity;
+			discService.updateByDiscStock(disc,stock);			
 			System.out.println("before Set Collections"+carts);			
 			Iterator<Cart> cartIterator = carts.iterator();
 			while (cartIterator.hasNext()) {
@@ -412,6 +428,7 @@ public class ApplicationController {
 	public ModelAndView getdiscList() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
+			System.out.println("Entering into disc List");
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
 			// TODO Auto-generated catch block
@@ -444,6 +461,7 @@ public class ApplicationController {
 	public ModelAndView getMovies() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
+			System.out.println("Entering into Movie List");
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
 			// TODO Auto-generated catch block
@@ -561,6 +579,32 @@ public class ApplicationController {
 		return new ModelAndView("tamilTvShows", model);
     }
 	
+	@RequestMapping("/englishShows")
+	public ModelAndView getEnglishShows() {
+		Map<String, Object> model = new HashMap<String, Object>();
+		try {
+			model.put("disc", discService.discList());	
+			 
+		}catch (UserApplicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ModelAndView("english_Shows", model);
+    }
+
+	@RequestMapping("/hindiShows")
+	public ModelAndView getHindiShows() {
+		Map<String, Object> model = new HashMap<String, Object>();
+		try {
+			model.put("disc", discService.discList());	
+			 
+		}catch (UserApplicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ModelAndView("hindi_Shows", model);
+    }
+
 	/*public List<Disc> getAllDisc(){
 		List<Disc> discs = new ArrayList<Disc>();
 		try {

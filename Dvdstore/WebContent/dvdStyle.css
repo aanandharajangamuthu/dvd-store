@@ -255,14 +255,11 @@ h1#logo a {
 	line-height:0;
 	text-indent:-4000px;
 }
-#main {
-	border-bottom:1px dashed #413e3e;
-}
+
 #content {
 }
 .box {
-	width:1000px;
-	border-bottom:1px dashed #413e3e;
+	width:1000px;	
 	padding-bottom:21px;
 }
 .box .head {
@@ -282,7 +279,8 @@ h1#logo a {
 .text{ 
 	width:340px; 
 	height:217px; 
-	background:#FFF; opacity:0; 
+	background:#FFF;
+	visibility:hidden; 
 	} 
 .movie-image {
 	float:left;
@@ -303,6 +301,7 @@ h1#logo a {
 .movie-image img:hover {
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
+	visibility:visible;
 }
 	
 .movie-image a {

@@ -13,7 +13,7 @@
     <div id="content">
       <div class="box">
         <div class="movie">
-          <div class="movie-image"> <span class="play"><span class="name">Theri</span></span> <a href="tamilMovies.html"><img src="vijay.jpeg" alt="" /></a></div>
+          <div class="movie-image"> <span class="play"><span class="name">Theri</span></span><a href="tamilMovies.html"><img src="vijay.jpeg" alt="" /></a></div>
           <div class="rating">
             <p>RATING</p>
             <div class="stars">

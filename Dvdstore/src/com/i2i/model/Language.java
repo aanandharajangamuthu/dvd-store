@@ -3,10 +3,15 @@ package com.i2i.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 /**
  * @author Anandharaj Angamuthu
@@ -24,6 +29,7 @@ public class Language {
 	@Column(name = "name")	
     private String name;
 	
+	@OneToMany(mappedBy = "language")
     private Set<Disc> discs = new HashSet<Disc>();   
    
     public Language(){}

@@ -31,9 +31,9 @@
 <br><br>
         <table border="1" bgcolor="black" width="600px">
 <tr style="background-color: green;color: white;text-align: center;" height="40px">
-<td>Disc Movie Name</td>
+<td>Movie Name</td>
 <td>Director</td>
-<td>ImageUrl</td>
+<td>Poster</td>
 <td>Quantity</td>
 <td>Total Price</td>
 </tr>
@@ -47,8 +47,8 @@
 </tr>
 </c:forEach>
 </table>
- </c:if>
-<a href="success.html"><input type="button" class="button" value="Confirm Order"/></a><br>
+ </c:if><br>
+<center><a href="success.html"><input type="button" class="button" value="Confirm Order"/></a></center>
 </div>
 </div>
 </body>

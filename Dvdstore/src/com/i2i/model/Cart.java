@@ -3,8 +3,10 @@ package com.i2i.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,12 +27,19 @@ public class Cart {
 	@GeneratedValue
 	@Column(name = "id")		
 	private int id;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name ="purchaseOrderId")	
 	private PurchaseOrder purchaseOrder;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name ="discId")	
 	private Disc disc;
+	
+	@Column(name="quantity")
 	private int quantity;
+	
+	@Column(name="totalPrice")
 	private double totalPrice;
 	
 	public Cart(){}

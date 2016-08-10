@@ -2,16 +2,43 @@ package com.i2i.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 /**
  * @author Anandharaj Angamuthu
  *
  */
+@Entity
+@Table(name="PurchaseOrder")
 public class PurchaseOrder {
-		
+	
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "id")		
     private int id;
+	
+	@Column(name="payment")
 	private String payment;
+	
+	@Column(name="status")
 	private String status;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name ="userId")	
 	private User user;
+	
+	@OneToMany(mappedBy = "purchaseOrder")
 	private Set<Cart> cart = new HashSet<Cart> (); 
 		
 	public PurchaseOrder(){};

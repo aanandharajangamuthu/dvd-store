@@ -3,11 +3,15 @@ package com.i2i.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Id;
 import javax.persistence.Table;
 /**
@@ -23,11 +27,11 @@ public class Disc {
 	@Column(name = "id")	
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name ="categoryId")
 	private Category category ;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name ="languageId")
 	private Language language;
 	
@@ -49,6 +53,7 @@ public class Disc {
 	@Column(name = "stock")
 	private int stock;
 	
+	@OneToMany(mappedBy = "disc")
 	private Set<Cart> cart = new HashSet<Cart> ();
 	 
 	public Disc(){};

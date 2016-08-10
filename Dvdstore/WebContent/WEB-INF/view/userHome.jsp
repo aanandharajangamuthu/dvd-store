@@ -17,7 +17,7 @@
      <div id="navigation">
       <ul>              
         <li><a href="#">IN THEATERS</a></li>
-        <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>        
+        <li><a href="comingSoon.jsp" target="iframe_a">COMING SOON</a></li>        
         <li><div><a href="userDetail.html"><c:out value="${currentUser.name}"/></a></div></li>
         <li><a href="cartList.html" target="iframe_a">My cart</a></li>
         <li><a href="signOut.html">Sign Out!!!</a></li>

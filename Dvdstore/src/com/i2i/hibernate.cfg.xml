@@ -19,11 +19,11 @@
         <property name="use_sql_comments">false</property>
 
         <!-- List of XML mapping files -->
-        <mapping resource="com/i2i/User.hbm.xml"/>
-        <mapping resource="com/i2i/Category.hbm.xml"/>
-        <mapping resource="com/i2i/Disc.hbm.xml"/>
-        <mapping resource="com/i2i/Language.hbm.xml"/>
-        <mapping resource="com/i2i/PurchaseOrder.hbm.xml"/>
-        <mapping resource="com/i2i/Cart.hbm.xml"/>
+        <mapping class="com.i2i.model.User"/>
+        <mapping class="com.i2i.model.Category"/>
+        <mapping class="com.i2i.model.Disc"/>
+        <mapping class="com.i2i.model.Language"/>
+        <mapping class="com.i2i.model.PurchaseOrder"/>
+        <mapping class="com.i2i.model.Cart"/>
     </session-factory>
 </hibernate-configuration>

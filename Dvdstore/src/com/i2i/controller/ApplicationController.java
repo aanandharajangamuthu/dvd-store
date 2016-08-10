@@ -122,6 +122,7 @@ public class ApplicationController {
 		try {
 			model.put("user", userService.getAllUsers());			
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);			
 		}
 		return new ModelAndView("UserDetails", model);
@@ -189,6 +190,7 @@ public class ApplicationController {
 		    	
 		    }
 		} catch(UserApplicationException e) {
+			e.printStackTrace();
 		    System.out.println("Exception occur");		
 		}		
 		return new ModelAndView("tryAgain");
@@ -211,6 +213,7 @@ public class ApplicationController {
 			try {
 			    discService.updateByDiscStock(disc,stock);
 			} catch (UserApplicationException e) {
+				e.printStackTrace();
 				System.out.println(e);		
 			} 
 			 
@@ -249,6 +252,7 @@ public class ApplicationController {
 			model.put("cart",carts);
 			model.put("totalAmount",totalAmount);				
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);
 		}		
 		return new ModelAndView("Cart",model);
@@ -286,6 +290,7 @@ public class ApplicationController {
 			model.put("cart", carts);	
 			model.put("totalAmount",totalAmount);
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);
 		}		
 		return new ModelAndView("Cart",model);
@@ -322,6 +327,7 @@ public class ApplicationController {
 			Disc disc = discService.findByDiscId(id);			
 			model.put("BuyDisc", disc);
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);		
 		}
 		return new ModelAndView("buyDisc", model);
@@ -360,7 +366,6 @@ public class ApplicationController {
 	@RequestMapping("/purchaseDisc")
 	public ModelAndView checkUser(@ModelAttribute("user") User user, BindingResult result) {
 		System.out.println("PurchaseDisc");
-
 		Map<String, Object> model = new HashMap<String, Object>();		
 		try {
 			if(currentUser == null ) {
@@ -375,7 +380,6 @@ public class ApplicationController {
 		            return new ModelAndView("PurchaseOrder",model);
 		        } else {
 		    		return new ModelAndView("PurchaseLogin");
-
 		        }
 		        
 			} else {
@@ -389,6 +393,7 @@ public class ApplicationController {
 			}
 		    	
 		} catch(UserApplicationException e) {
+			e.printStackTrace();
 		    System.out.println("Exception occur");		
 		}
 		return new ModelAndView("PurchaseLogin");
@@ -408,13 +413,15 @@ public class ApplicationController {
 		 totalAmount = 0;
 		 Map<String, Object> model = new HashMap<String, Object>();	
 		 model.put("currentUser", currentUser);
-		try {								
-			purchaseOrderService.add(purchaseOrder);
+		try {				
+			System.out.println(purchaseOrder);
+			purchaseOrderService.add(purchaseOrder);			
 			for(Cart cart:purchaseOrder.getCart()) {				
 				cartService.updateCart(cart, purchaseOrder);	           
 			}
 			carts.clear();
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);			
 		}
 		return new ModelAndView("Success",model);
@@ -509,7 +516,7 @@ public class ApplicationController {
 			languageService.createLanguage(language);
 		} catch (UserApplicationException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 			e.getMessage();
 		}
 		System.out.println("Save Language Data");
@@ -568,6 +575,7 @@ public class ApplicationController {
 		try {
 			discService.createDisc(disc);
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);			
 		}		
 		return new ModelAndView("redirect:/discList.html");
@@ -587,6 +595,7 @@ public class ApplicationController {
 			System.out.println("Entering into disc List");
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("discDetails", model);
@@ -624,7 +633,8 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc",discService.findByDiscId(disc.getId()));
-		} catch (UserApplicationException e) {			
+		} catch (UserApplicationException e) {	
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		System.out.println("Save Disc Data");
@@ -645,6 +655,7 @@ public class ApplicationController {
 			System.out.println("Entering into Movie List");
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("movies", model);
@@ -663,6 +674,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("tamil", model);
@@ -682,6 +694,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("english", model);
@@ -700,6 +713,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("hindi", model);
@@ -717,7 +731,8 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
-		} catch (UserApplicationException e) {			
+		} catch (UserApplicationException e) {	
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("songs", model);
@@ -737,6 +752,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("tamilSong", model);
@@ -755,6 +771,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("hindiSong", model);
@@ -773,6 +790,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("englishSong", model);
@@ -791,6 +809,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("shows", model);
@@ -809,6 +828,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());			 
 		}catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("tamilTvShows", model);
@@ -828,6 +848,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());			 
 		}catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("english_Shows", model);
@@ -846,6 +867,7 @@ public class ApplicationController {
 		try {
 			model.put("disc", discService.discList());			 
 		}catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);	
 		}
 		return new ModelAndView("hindi_Shows", model);
@@ -872,7 +894,7 @@ public class ApplicationController {
 	 * @return ModelAndView
 	 *         returns model to languageAndDisc page.
 	 */
-	@RequestMapping(value="/allocate",method=RequestMethod.POST)
+	@RequestMapping(value="/allocateLanguage",method=RequestMethod.POST)
 	public ModelAndView allocateDisc(@RequestParam("discId") int discId, 
 			            @RequestParam("languageId") int languageId) {
 		Disc disc;
@@ -883,7 +905,8 @@ public class ApplicationController {
 		    Set<Disc> discs = new HashSet<Disc>();
 		    discs.add(disc);
 			discService.languageForDiscs(discs,language);
-		} catch (UserApplicationException e) {		
+		} catch (UserApplicationException e) {	
+			e.printStackTrace();
 			System.out.println(e);			
 		}		
 		return new ModelAndView("assigned");
@@ -922,6 +945,7 @@ public class ApplicationController {
 		    discs.add(disc);
 			discService.categoryForDiscs(discs,category);
 		} catch (UserApplicationException e) {
+			e.printStackTrace();
 			System.out.println(e);		
 		}		
 		return new ModelAndView("assigned");

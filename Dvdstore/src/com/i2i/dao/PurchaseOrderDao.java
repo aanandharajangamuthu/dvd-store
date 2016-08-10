@@ -109,8 +109,9 @@ public class PurchaseOrderDao extends GenericDao {
 		Session session = checkSessionFactory();
     	Transaction transaction = null;
         try {
+        	System.out.println("PurchaseOrderId :"+purchaseOrder.getId());
             transaction = session.beginTransaction();
-            session.save(purchaseOrder); 
+            session.merge(purchaseOrder); 
             transaction.commit();
         } catch (HibernateException e) {
             throw new UserApplicationException("unable to Add for this Purchase Id "+purchaseOrder.getId(),e);

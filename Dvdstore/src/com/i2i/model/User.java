@@ -2,18 +2,45 @@ package com.i2i.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 /**
  * @author Manikandan 
  *
  */
+@Entity
+@Table(name="User")
 public class User {  
 
+	@Id
+	@GeneratedValue
+	@Column(name = "id")		
 	private int id;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="password")
 	private String password;
+	
+	@Column(name="mobileNum")
 	private String mobileNumber;
+	
+	@Column(name="isAdmin")
 	private byte isAdmin;
+	
+	@OneToMany(mappedBy = "user")
     private Set<PurchaseOrder> 	purchaseOrders = new HashSet<PurchaseOrder> ();
     
     

@@ -15,7 +15,9 @@
  <i><h2 style="color:green">Be a Fanatic and Admire Everything </h2></i>
  </div>
      <div id="navigation">
-      <ul>              
+      <ul>   
+        <li><a href="#">IN THEATERS</a></li>
+        <li><a href="https://in.bookmyshow.com/movies/comingsoon">COMING SOON</a></li>                   
         <li><a href="login.html">LOGIN/REGISTER</a></li>
         <li><a href="cartList.html" target="iframe_a">CART</a></li>
       </ul>

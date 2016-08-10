@@ -13,7 +13,7 @@
         <!-- Assume test is the database name -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost/DvdStore</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">ubuntu</property>
+        <property name="hibernate.connection.password">root</property>
         <property name="show_sql">false</property>
         <property name="format_sql">false</property>
         <property name="use_sql_comments">false</property>

@@ -27,11 +27,11 @@ public class Disc {
 	@Column(name = "id")	
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name ="categoryId")
 	private Category category ;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name ="languageId")
 	private Language language;
 	

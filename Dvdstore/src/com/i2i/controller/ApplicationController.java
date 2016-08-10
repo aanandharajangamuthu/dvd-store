@@ -905,11 +905,12 @@ public class ApplicationController {
 		    Set<Disc> discs = new HashSet<Disc>();
 		    discs.add(disc);
 			discService.languageForDiscs(discs,language);
+			return new ModelAndView("assigned");
 		} catch (UserApplicationException e) {	
 			e.printStackTrace();
 			System.out.println(e);			
 		}		
-		return new ModelAndView("assigned");
+		return null;
 	}
 	
 	/**
@@ -944,11 +945,12 @@ public class ApplicationController {
 		    Set<Disc> discs = new HashSet<Disc>();
 		    discs.add(disc);
 			discService.categoryForDiscs(discs,category);
+			return new ModelAndView("assigned");
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);		
 		}		
-		return new ModelAndView("assigned");
+		return null;
 	}
 		
 }

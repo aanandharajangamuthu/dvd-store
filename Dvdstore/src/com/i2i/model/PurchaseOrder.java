@@ -34,7 +34,7 @@ public class PurchaseOrder {
 	@Column(name="status")
 	private String status;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name ="userId")	
 	private User user;
 	

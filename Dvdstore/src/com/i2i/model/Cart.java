@@ -28,11 +28,11 @@ public class Cart {
 	@Column(name = "id")		
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name ="purchaseOrderId")	
 	private PurchaseOrder purchaseOrder;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name ="discId")	
 	private Disc disc;
 	

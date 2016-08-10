@@ -16,7 +16,7 @@
         <c:if test="${!empty disc}">
             <c:forEach items="${disc}" var="disc">
                 <form:form id="discId" method="post" action="buyDisc.html">
-                    <c:if test="${disc.category.getId() == 1}">
+                    <c:if test="${disc.category.getId() == 5}">
                         <div class="upleft">
                             <img src="<c:out value="${disc.imageUrl}"/>" alt="image" border=3 height=200 width=200></img>
                         </div>

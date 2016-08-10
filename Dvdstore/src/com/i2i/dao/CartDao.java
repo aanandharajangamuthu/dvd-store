@@ -159,7 +159,7 @@ public class CartDao extends GenericDao {
         try {
         	transaction = session.beginTransaction();                                         
         	cart.setPurchaseOrder(purchaseOrder);
-        	session.merge(cart); 
+        	session.update(cart); 
         	transaction.commit();
         } catch (HibernateException e) {            
             throw new UserApplicationException("Could not Update for this Cart "+cart.getId(), e);

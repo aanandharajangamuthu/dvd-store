@@ -104,12 +104,12 @@ public class ApplicationController {
 
 		try {
 		    userService.addUser(user);
-			System.out.println("Save User Data");
+		    return new ModelAndView("home");
 		} catch(UserApplicationException e) {
 		    System.out.println("Exception occur");		
 		}
+		return null;
 		
-		return new ModelAndView("home");
 	}
 	/**
 	 * <P> Retrieves the list of registered Users</p>
@@ -120,12 +120,13 @@ public class ApplicationController {
 	public ModelAndView getUserList() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
-			model.put("user", userService.getAllUsers());			
+			model.put("user", userService.getAllUsers());		
+			return new ModelAndView("UserDetails", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);			
 		}
-		return new ModelAndView("UserDetails", model);
+		return null;		
 	}
 	/**
 	 * </p> Directs to userHome page </p>
@@ -250,12 +251,13 @@ public class ApplicationController {
 			carts.add(cart);
 			totalAmount += totalPrice;		
 			model.put("cart",carts);
-			model.put("totalAmount",totalAmount);				
+			model.put("totalAmount",totalAmount);	
+			return new ModelAndView("Cart",model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);
 		}		
-		return new ModelAndView("Cart",model);
+		return null;
 	}
 	
 	/**
@@ -289,11 +291,12 @@ public class ApplicationController {
 		    cartService.removeCartById(id);			
 			model.put("cart", carts);	
 			model.put("totalAmount",totalAmount);
+			return new ModelAndView("Cart",model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);
 		}		
-		return new ModelAndView("Cart",model);
+		return null;
 	}	
 
    /**
@@ -326,11 +329,12 @@ public class ApplicationController {
 		try {
 			Disc disc = discService.findByDiscId(id);			
 			model.put("BuyDisc", disc);
+			return new ModelAndView("buyDisc", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);		
 		}
-		return new ModelAndView("buyDisc", model);
+		return null;
 	}
 	
 	
@@ -420,11 +424,12 @@ public class ApplicationController {
 				cartService.updateCart(cart, purchaseOrder);	           
 			}
 			carts.clear();
+			return new ModelAndView("Success",model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);			
 		}
-		return new ModelAndView("Success",model);
+		return null;
 	}
 	
 	
@@ -458,13 +463,11 @@ public class ApplicationController {
 			BindingResult result) {
 		try {
 			categoryService.createCategory(category);
-		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			return new ModelAndView("redirect:/categoryList.html");
+		} catch (UserApplicationException e) {			
 			e.getMessage();
 		}
-		System.out.println("Save Category Data");
-		return new ModelAndView("redirect:/categoryList.html");
+		return null;		
 	}
 
 	/**
@@ -477,11 +480,12 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("category", categoryService.categoryList());
+			return new ModelAndView("categoryDetails", model);
 		} catch (UserApplicationException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		return new ModelAndView("categoryDetails", model);
+		return null;
     }
 
 	
@@ -514,13 +518,13 @@ public class ApplicationController {
 			BindingResult result) {
 		try {
 			languageService.createLanguage(language);
+			return new ModelAndView("redirect:/languageList.html");
 		} catch (UserApplicationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			e.getMessage();
 		}
-		System.out.println("Save Language Data");
-		return new ModelAndView("redirect:/languageList.html");
+		return null;		
 	}
 
 	/**
@@ -533,11 +537,12 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("language", languageService.languageList());
+			return new ModelAndView("languageDetails", model);
 		} catch (UserApplicationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new ModelAndView("languageDetails", model);
+		return null;
     }
 
 
@@ -574,11 +579,12 @@ public class ApplicationController {
 			BindingResult result) {
 		try {
 			discService.createDisc(disc);
+			return new ModelAndView("redirect:/discList.html");
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);			
-		}		
-		return new ModelAndView("redirect:/discList.html");
+		}	
+		return null;
 	}	
 	
 	/**
@@ -594,11 +600,12 @@ public class ApplicationController {
 		try {
 			System.out.println("Entering into disc List");
 			model.put("disc", discService.discList());
+			return new ModelAndView("discDetails", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
 		}
-		return new ModelAndView("discDetails", model);
+		return null;
     }
 	
 	
@@ -633,12 +640,12 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc",discService.findByDiscId(disc.getId()));
+			return new ModelAndView("viewDisc",model);
 		} catch (UserApplicationException e) {	
 			e.printStackTrace();
 			System.out.println(e);	
-		}
-		System.out.println("Save Disc Data");
-		return new ModelAndView("viewDisc",model);
+		}		
+		return null;
 	}	
 	
 	/**
@@ -654,11 +661,12 @@ public class ApplicationController {
 		try {
 			System.out.println("Entering into Movie List");
 			model.put("disc", discService.discList());
+			return new ModelAndView("movies", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
 		}
-		return new ModelAndView("movies", model);
+		return null;
     }	
 	
 	/**
@@ -673,11 +681,12 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
+			return new ModelAndView("tamil", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
 		}
-		return new ModelAndView("tamil", model);
+	    return null;	
     }
 	
 	
@@ -693,11 +702,12 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
+			return new ModelAndView("english", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
 		}
-		return new ModelAndView("english", model);
+		return null;
     }
 	
 	/**
@@ -712,11 +722,12 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
+			return new ModelAndView("hindi", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
 		}
-		return new ModelAndView("hindi", model);
+		return null;
     }	
 	
 	/**
@@ -731,11 +742,12 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
+			return new ModelAndView("songs", model);
 		} catch (UserApplicationException e) {	
 			e.printStackTrace();
 			System.out.println(e);	
 		}
-		return new ModelAndView("songs", model);
+		return null;
     }
 	
 	
@@ -751,11 +763,12 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
+			return new ModelAndView("tamilSong", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
-		}
-		return new ModelAndView("tamilSong", model);
+			return null;
+		}		
     }
 	
 	/**
@@ -770,11 +783,12 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
+			return new ModelAndView("hindiSong", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
 		}
-		return new ModelAndView("hindiSong", model);
+		return null;
     }	
 
 	/**
@@ -789,11 +803,13 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
+			return new ModelAndView("englishSong", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
-			System.out.println(e);	
+			System.out.println(e);
+			return null;
 		}
-		return new ModelAndView("englishSong", model);
+		
     }	
 
 	/**
@@ -808,11 +824,13 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());
+			return new ModelAndView("shows", model);
 		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
+			return null;
 		}
-		return new ModelAndView("shows", model);
+		
     }
 	
 	/**
@@ -826,12 +844,14 @@ public class ApplicationController {
 	public ModelAndView getTamilShows() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
-			model.put("disc", discService.discList());			 
-		}catch (UserApplicationException e) {
+			model.put("disc", discService.discList());	
+			return new ModelAndView("tamilTvShows", model);
+		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
+			return null;
 		}
-		return new ModelAndView("tamilTvShows", model);
+		
     }
 	
 	
@@ -846,12 +866,14 @@ public class ApplicationController {
 	public ModelAndView getEnglishShows() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
-			model.put("disc", discService.discList());			 
-		}catch (UserApplicationException e) {
+			model.put("disc", discService.discList());		
+			return new ModelAndView("english_Shows", model);
+		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
+			return null;
 		}
-		return new ModelAndView("english_Shows", model);
+		
     }  
 	
 	/**
@@ -866,11 +888,13 @@ public class ApplicationController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		try {
 			model.put("disc", discService.discList());			 
-		}catch (UserApplicationException e) {
+			return new ModelAndView("hindi_Shows", model);
+		} catch (UserApplicationException e) {
 			e.printStackTrace();
 			System.out.println(e);	
+			return null;
 		}
-		return new ModelAndView("hindi_Shows", model);
+		
     }	
 	
 	/**
